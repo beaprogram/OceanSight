@@ -1,38 +1,41 @@
 [
   {
     "backend": "pytorch_fp32",
-    "size_mb": 6.201642,
-    "sha256": "5c66c89e9df34c3212fb11ed23c06cac853f9d36b0162e5df5b8e8cb20c9b5f8",
+    "size_mb": 6.212714,
+    "sha256": "4d857f557e6067d8d940ea953b0157bd1591363e2fe644cf15c5ecdd757fb985",
     "test": {
-      "metrics/precision(B)": 0.6932307166528431,
-      "metrics/recall(B)": 0.43617021276595747,
-      "metrics/mAP50(B)": 0.5085800196513037,
-      "metrics/mAP50-95(B)": 0.2871081141737893,
-      "fitness": 0.2871081141737893
-    }
+      "metrics/precision(B)": 0.5793178267778296,
+      "metrics/recall(B)": 0.5531914893617021,
+      "metrics/mAP50(B)": 0.4984133540761022,
+      "metrics/mAP50-95(B)": 0.2741925812586622,
+      "fitness": 0.2741925812586622
+    },
+    "evaluation_note": "Same reference holdout previously inspected in v1; no model or quantization selection uses these test scores."
   },
   {
     "backend": "onnx_fp32",
-    "size_mb": 12.112803,
-    "sha256": "42b2dbdde172b5a9b1cca15244f47e1709025012df0fe8989f29f1bdddc4061b",
+    "size_mb": 12.141783,
+    "sha256": "8293a09fc26ec2cfbb149388fd4ffb69864dd0696a83db8331ddbbcf9fa8a02d",
     "test": {
-      "metrics/precision(B)": 0.6932302746318338,
-      "metrics/recall(B)": 0.43617021276595747,
-      "metrics/mAP50(B)": 0.5085800182013309,
-      "metrics/mAP50-95(B)": 0.2871081095692611,
-      "fitness": 0.2871081095692611
-    }
+      "metrics/precision(B)": 0.5793184574376331,
+      "metrics/recall(B)": 0.5531914893617021,
+      "metrics/mAP50(B)": 0.4984133540761022,
+      "metrics/mAP50-95(B)": 0.2741925323349831,
+      "fitness": 0.2741925323349831
+    },
+    "evaluation_note": "Same reference holdout previously inspected in v1; no model or quantization selection uses these test scores."
   },
   {
     "backend": "onnx_int8",
-    "size_mb": 3.398104,
-    "sha256": "a8a6664adc8bd5ac2eabeb09633551b6970f251da9721469549a998f36e0fc93",
+    "size_mb": 3.350486,
+    "sha256": "e58f886921facfd7503febb122f314b9b1dd34ba668c269a16c06ab7b541c282",
     "test": {
-      "metrics/precision(B)": 0.0,
-      "metrics/recall(B)": 0.0,
-      "metrics/mAP50(B)": 0.0,
-      "metrics/mAP50-95(B)": 0.0,
-      "fitness": 0.0
-    }
+      "metrics/precision(B)": 0.5363010678619469,
+      "metrics/recall(B)": 0.5531914893617021,
+      "metrics/mAP50(B)": 0.48494220578714287,
+      "metrics/mAP50-95(B)": 0.26774981266124886,
+      "fitness": 0.26774981266124886
+    },
+    "evaluation_note": "Same reference holdout previously inspected in v1; no model or quantization selection uses these test scores."
   }
 ]

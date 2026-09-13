@@ -56,6 +56,7 @@ python -m oceansight.data --limit 2400 --frames-per-video 20 \
 python -m oceansight.audit
 python -m oceansight.embeddings
 python -m oceansight.train --epochs 30 --imgsz 416 --device mps --tag v2
+python -m oceansight.model_compare
 python -m oceansight.edge
 python -m oceansight.failures
 python -m oceansight.statistics
@@ -85,6 +86,10 @@ All `trash_*` labels map to one `marine_debris` class. Animal, plant and ROV obj
 The pipeline assigns whole source-video IDs to train/validation/test with seed 42 and samples temporally spread frames. The expanded run has **1,680 training images from 213 videos**, **108 validation images from 44 videos**, and **108 test images from 45 videos**. Validation and test image identities are preserved from the first experiment; neither is added to training. Exact duplicate hashes and video overlap are checked. Normalized boxes are generated from validated, clipped coordinates.
 
 The test set is a **reused reference holdout**: its first-version results and failure images were inspected before this expansion. Model selection and quantization gating use validation, but we do not describe this small reused set as a fresh, unbiased final benchmark. Different videos could share a location or expedition. The mirror conversion has not been checked against the original archive, and its annotation-derived inventory may omit fully unannotated negative frames. This is not the official TrashCan evaluation protocol.
+
+An additional **87-image / 9-video audit** was reserved from source groups absent from both experiments. It is evaluated only after model/export selection. It is a small supplementary check, not a replacement for the reference set or a location-disjoint benchmark.
+
+Restore its frozen image set with `python -m oceansight.final_audit prepare`. The first evaluation uses `python -m oceansight.final_audit evaluate`; a deliberate repeat requires `--recheck` and writes a separate report so the original audit is not silently overwritten.
 
 ## System architecture
 
@@ -134,6 +139,7 @@ flowchart LR
 | `reports/dataset.json`, `reports/manifest.json` | Provenance, source labels, hashes and split membership |
 | `reports/comparison.json`, `reports/selection.json` | Validation comparison and model selection |
 | `reports/test_metrics.json` | Matched-input PyTorch/ONNX/INT8 AP |
+| `reports/architecture_benchmark.json` | Equal-input CPU timing and parameter counts for both detectors |
 | `reports/benchmark.json` | CPU methodology, latency and numerical parity |
 | `reports/quantization_diagnosis.json` | Measured original failure mechanism |
 | `reports/quantization_gate.json` | Validation acceptance of the revised INT8 experiment |

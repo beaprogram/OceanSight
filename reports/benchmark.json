@@ -1,44 +1,48 @@
 {
   "hardware": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
   "processor": "arm64",
+  "chip": "Apple M4",
+  "memory_gb": 16,
   "threads": 4,
   "batch": 1,
-  "imgsz": 320,
-  "scope": "warm forward pass only; excludes image decode, letterbox and NMS; not a Jetson or Raspberry Pi benchmark",
+  "imgsz": 416,
+  "scope": "Warm network forward only; excludes decode, letterbox and NMS. Mac CPU, not a physical robot/Jetson/Pi.",
   "warmup": 5,
   "unique_images": 30,
   "repeat": 3,
+  "timing_order": "rotating round-robin backends per image",
+  "image_split": "validation",
   "results": [
     {
       "backend": "pytorch_fp32",
       "samples": 90,
-      "median_ms": 8.842937000736129,
-      "p95_ms": 11.114508444006784,
-      "mean_ms": 9.175363000475853
+      "median_ms": 39.50050000275951,
+      "p95_ms": 58.641010449355235,
+      "mean_ms": 47.48974622214317
     },
     {
       "backend": "onnx_fp32",
       "samples": 90,
-      "median_ms": 4.159645504842047,
-      "p95_ms": 4.484933545609238,
-      "mean_ms": 4.177880067759866
+      "median_ms": 16.97966700885445,
+      "p95_ms": 28.870614392508283,
+      "mean_ms": 19.423380543755936
     },
     {
       "backend": "onnx_int8",
       "samples": 90,
-      "median_ms": 3.9439380052499473,
-      "p95_ms": 4.665716857562074,
-      "mean_ms": 4.03608934575459
+      "median_ms": 21.777437497803476,
+      "p95_ms": 35.003474706900306,
+      "mean_ms": 27.019722244585864
     }
   ],
-  "raw_output_parity_first_test_image": {
+  "raw_output_parity_10_validation_images": {
     "onnx_fp32": {
-      "max_absolute_error": 0.000946044921875,
-      "mean_absolute_error": 4.591334072756581e-05
+      "max_absolute_error": 0.00885009765625,
+      "mean_absolute_error": 3.2554675271967426e-05
     },
     "onnx_int8": {
-      "max_absolute_error": 113.44879150390625,
-      "mean_absolute_error": 5.267484188079834
+      "max_absolute_error": 409.4189453125,
+      "mean_absolute_error": 3.8369545936584473
     }
   }
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "backend": "pytorch_fp32",
+    "size_mb": 6.201642,
+    "sha256": "5c66c89e9df34c3212fb11ed23c06cac853f9d36b0162e5df5b8e8cb20c9b5f8",
+    "test": {
+      "metrics/precision(B)": 0.6932307166528431,
+      "metrics/recall(B)": 0.43617021276595747,
+      "metrics/mAP50(B)": 0.5085800196513037,
+      "metrics/mAP50-95(B)": 0.2871081141737893,
+      "fitness": 0.2871081141737893
+    }
+  },
+  {
+    "backend": "onnx_fp32",
+    "size_mb": 12.112803,
+    "sha256": "42b2dbdde172b5a9b1cca15244f47e1709025012df0fe8989f29f1bdddc4061b",
+    "test": {
+      "metrics/precision(B)": 0.6932302746318338,
+      "metrics/recall(B)": 0.43617021276595747,
+      "metrics/mAP50(B)": 0.5085800182013309,
+      "metrics/mAP50-95(B)": 0.2871081095692611,
+      "fitness": 0.2871081095692611
+    }
+  },
+  {
+    "backend": "onnx_int8",
+    "size_mb": 3.398104,
+    "sha256": "a8a6664adc8bd5ac2eabeb09633551b6970f251da9721469549a998f36e0fc93",
+    "test": {
+      "metrics/precision(B)": 0.0,
+      "metrics/recall(B)": 0.0,
+      "metrics/mAP50(B)": 0.0,
+      "metrics/mAP50-95(B)": 0.0,
+      "fitness": 0.0
+    }
+  }
+]

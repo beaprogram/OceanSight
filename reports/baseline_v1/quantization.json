@@ -1,0 +1,6 @@
+{
+  "status": "completed",
+  "calibration_images": 64,
+  "calibration_split": "train",
+  "format": "QDQ U8 activations/S8 per-channel weights"
+}

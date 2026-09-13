@@ -1,0 +1,47 @@
+{
+  "url": "http://127.0.0.1:8502",
+  "model_sha256": "8293a09fc26ec2cfbb149388fd4ffb69864dd0696a83db8331ddbbcf9fa8a02d",
+  "reference_image": "vid_000080_frame0000077.jpg",
+  "readiness": {
+    "ready": true,
+    "model_sha256": "8293a09fc26ec2cfbb149388fd4ffb69864dd0696a83db8331ddbbcf9fa8a02d",
+    "class_names": [
+      "marine_debris"
+    ]
+  },
+  "prediction": {
+    "detections": [
+      {
+        "box": [
+          281.8521728515625,
+          38.16446304321289,
+          334.66424560546875,
+          108.9839859008789
+        ],
+        "confidence": 0.8791518211364746,
+        "label": "marine_debris"
+      }
+    ],
+    "width": 480,
+    "height": 270,
+    "pipeline_ms": 29.560123002738692,
+    "model_sha256": "8293a09fc26ec2cfbb149388fd4ffb69864dd0696a83db8331ddbbcf9fa8a02d",
+    "confidence_threshold": 0.25
+  },
+  "native_detections": [
+    {
+      "box": [
+        281.8521728515625,
+        38.16443634033203,
+        334.66424560546875,
+        108.9839859008789
+      ],
+      "confidence": 0.8791518211364746,
+      "label": "marine_debris"
+    }
+  ],
+  "parity_passed": true,
+  "invalid_image_status": 422,
+  "invalid_threshold_status": 422,
+  "scope": "Real-image service/native parity and input rejection; container latency is not an edge hardware benchmark."
+}

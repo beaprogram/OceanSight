@@ -19,7 +19,7 @@ Each detection contains an `xyxy` box in original image pixel coordinates, a sco
 
 The Dockerfile uses a pinned Python base-image digest and a locked Linux inference environment. PyTorch, Ultralytics, datasets and model weights are not baked into the image. The server runs as an unprivileged user. A readiness healthcheck verifies the supplied model. The README uses `docker cp` so an external SSD need not be mounted into a VM.
 
-The local container verification checks readiness and a real prediction. Its numerical output should agree with the local ONNX pipeline within tolerance. Container latency is not compared with native CPU timing because VM resources and concurrent training can differ.
+Run `python -m oceansight.verify_service --url http://127.0.0.1:8502` against the verification container (or substitute your API port). The local container verification checks readiness, invalid input and a real prediction. Its numerical output should agree with the local ONNX pipeline within tolerance. Container latency is not compared with native CPU timing because VM resources and concurrent training can differ.
 
 ## Automated checks
 

@@ -1,4 +1,6 @@
 {
   "model": "best.onnx",
-  "reason": "FP32 ONNX is the demo default; INT8 is an evaluated experimental alternative, not automatically selected using test results."
+  "default_confidence": 0.25,
+  "int8_quality_gate_passed": true,
+  "reason": "FP32 ONNX remains the accuracy-first default; INT8 is available only as a validated compression experiment when its validation gate passes."
 }

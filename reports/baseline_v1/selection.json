@@ -1,5 +1,5 @@
 {
   "selected": "yolov8n",
   "criterion": "highest validation mAP50-95; test never used for selection",
-  "imgsz": 416
+  "imgsz": 320
 }

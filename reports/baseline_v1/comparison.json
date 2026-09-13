@@ -1,0 +1,34 @@
+[
+  {
+    "model": "yolo11n",
+    "epochs": 10,
+    "imgsz": 320,
+    "train_device": "mps",
+    "elapsed_train_and_val_s": 149.46268987499934,
+    "parameters": 2590035,
+    "size_mb": 5.423322,
+    "validation": {
+      "metrics/precision(B)": 0.6468155964842067,
+      "metrics/recall(B)": 0.2872340425531915,
+      "metrics/mAP50(B)": 0.38346050379301067,
+      "metrics/mAP50-95(B)": 0.18549298757300442,
+      "fitness": 0.18549298757300442
+    }
+  },
+  {
+    "model": "yolov8n",
+    "epochs": 10,
+    "imgsz": 320,
+    "train_device": "mps",
+    "elapsed_train_and_val_s": 103.8953334169928,
+    "parameters": 3011043,
+    "size_mb": 6.201642,
+    "validation": {
+      "metrics/precision(B)": 0.6699243849291533,
+      "metrics/recall(B)": 0.2765957446808511,
+      "metrics/mAP50(B)": 0.3573027115728543,
+      "metrics/mAP50-95(B)": 0.19812840282216104,
+      "fitness": 0.19812840282216104
+    }
+  }
+]

@@ -90,3 +90,21 @@ def test_original_holdouts_are_unchanged():
         assert {(r["file_name"], r["sha256"]) for r in old if r["split"] == split} == {
             (r["file_name"], r["sha256"]) for r in new if r["split"] == split
         }
+
+
+def test_fresh_audit_is_disjoint_and_locked():
+    import hashlib
+    import json
+    from oceansight.common import REPORTS, DATA
+
+    audit_path = REPORTS / "final_audit_manifest.json"
+    if not audit_path.exists() or not (DATA / "manifest.json").exists():
+        pytest.skip("Requires reserved audit and prepared data")
+    audit = json.loads(audit_path.read_text())
+    used = json.loads((DATA / "manifest.json").read_text()) + json.loads(
+        (REPORTS / "baseline_v1" / "manifest.json").read_text()
+    )
+    for field in ("group", "sha256"):
+        assert not {r[field] for r in audit} & {r[field] for r in used}
+    protocol = json.loads((REPORTS / "final_audit_protocol.json").read_text())
+    assert hashlib.sha256(audit_path.read_bytes()).hexdigest() == protocol["manifest_sha256"]

@@ -25,6 +25,8 @@ def build(output):
         raise ValueError("Both model experiments and selection must be complete and consistent")
     if selection["imgsz"] != benchmark["imgsz"]:
         raise ValueError("Evaluation and selected model have mismatched input sizes")
+    if json.loads((REPORTS / "experiment_status.json").read_text())["state"] != "complete":
+        raise ValueError("Finish verification before packaging the release")
     deployment = json.loads((REPORTS / "deployment.json").read_text())
     models = [("onnx_fp32", "best.onnx")]
     if deployment.get("int8_quality_gate_passed"):

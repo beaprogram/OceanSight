@@ -14,7 +14,7 @@ The binary class is a scope decision: learn where trash is before classifying it
 
 Transfer learning starts with features learned from a general image dataset. Thirty epochs adapt those features to this small underwater sample. YOLO11n and YOLOv8n get the same input size, batch size, seed, split and epoch count; their wall-clock compute is not identical.
 
-Validation chooses the winning checkpoint and detector. Test data is only used after selection. mAP50–95 checks whether confident boxes line up with ground truth at several localization thresholds. A high score on 108 test images is still narrow evidence, and one seed is not a significance test.
+Validation chooses the winning checkpoint and detector. The reference test is evaluated after selection, but its earlier results were already inspected during v1. The additional 87-image audit was reserved from nine previously unused videos and evaluated after final selection. mAP50–95 checks whether confident boxes line up with ground truth at several localization thresholds. A high score on 108 test images is still narrow evidence, and one seed is not a significance test.
 
 ## 4. Explain unsupervised analysis
 

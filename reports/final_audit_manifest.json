@@ -1,0 +1,1582 @@
+[
+  {
+    "file_name": "vid_000051_frame0000016.jpg",
+    "source_split": "test",
+    "group": "vid_000051",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "363.0020080321285",
+        "y_min": "78.0030303030303",
+        "x_max": "376.993670886076",
+        "y_max": "104.5"
+      },
+      {
+        "label": "trash_fishing_gear",
+        "x_min": "302.0019607843137",
+        "y_min": "91.0",
+        "x_max": "364.9980392156863",
+        "y_max": "117.99803921568628"
+      }
+    ],
+    "sha256": "1e38b6d8ace56bae3b6694fcb947f19532bbca3bd072ecb07cf79c0cdcf20959",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 2
+  },
+  {
+    "file_name": "vid_000067_frame0000013.jpg",
+    "source_split": "test",
+    "group": "vid_000067",
+    "annotations": [
+      {
+        "label": "rov",
+        "x_min": "250.0028735632184",
+        "y_min": "162.00198412698413",
+        "x_max": "384.9935064935065",
+        "y_max": "270.9980392156863"
+      }
+    ],
+    "sha256": "ed807d5dca42a28db606c6c7638b10ca69c605f6935251cd9b2d35b697396422",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000067_frame0000015.jpg",
+    "source_split": "test",
+    "group": "vid_000067",
+    "annotations": [
+      {
+        "label": "rov",
+        "x_min": "257.0049504950495",
+        "y_min": "163.0037313432836",
+        "x_max": "388.0",
+        "y_max": "270.998023715415"
+      }
+    ],
+    "sha256": "c0842c11048e8a5db2c63ed511ac1f1dcf10702d9df13fe0ababaa8221dc2898",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000081_frame0000010.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "5.0019607843137255",
+        "y_min": "70.00196078431372",
+        "x_max": "51.99803921568628",
+        "y_max": "98.99803921568628"
+      }
+    ],
+    "sha256": "f1fb1457682d60bad4bc0b7cac3a0c10ad4008a9870cc679c44137be5d687acc",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000014.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "15.001960784313724",
+        "y_min": "65.00196078431372",
+        "x_max": "63.99803921568628",
+        "y_max": "101.99803921568628"
+      }
+    ],
+    "sha256": "8b15219623d6bd95dd67b511ead57dae586ecdb9d4cc6ca877164e85fc4162ac",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000016.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "36.001960784313724",
+        "y_min": "65.00196078431372",
+        "x_max": "86.99803921568628",
+        "y_max": "104.99803921568628"
+      }
+    ],
+    "sha256": "224319a40d6245cb1e21e6c63098ec883f29adaaafbc7a52a43a08b45d17d0fd",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000017.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "52.00196078431373",
+        "y_min": "67.00196078431372",
+        "x_max": "105.99803921568628",
+        "y_max": "107.99803921568628"
+      }
+    ],
+    "sha256": "aac5f988f260916ab7330932e530df8b03c6dc523b7d94a5b252b2f5dd104e4c",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000018.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "75.00196078431372",
+        "y_min": "72.00196078431372",
+        "x_max": "120.99803921568628",
+        "y_max": "108.99803921568628"
+      }
+    ],
+    "sha256": "f7cba8126f1c8418673a32f837097c466f23d59fbadafb0a8d3b84ad5f66da4a",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000020.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "114.00196078431372",
+        "y_min": "73.00196078431372",
+        "x_max": "161.99803921568628",
+        "y_max": "112.99803921568628"
+      }
+    ],
+    "sha256": "30ec1690ff8501001aa68be3f9591919a6aeed179289fb9b92b2233c4acb83cb",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000021.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "134.00196078431372",
+        "y_min": "73.00196078431372",
+        "x_max": "184.99803921568628",
+        "y_max": "112.99803921568628"
+      }
+    ],
+    "sha256": "a397c21d1484618b90838ce26fabd7c0782b5aa905b5f15931489cb9b0c6a111",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000022.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "161.00196078431372",
+        "y_min": "75.00196078431372",
+        "x_max": "208.99803921568628",
+        "y_max": "110.99803921568628"
+      }
+    ],
+    "sha256": "90011a7ae7bfd6c2fa2b93444898242f795ed053e87737569a8fd8601e54df93",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000023.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "173.00196078431372",
+        "y_min": "71.00196078431372",
+        "x_max": "219.99803921568628",
+        "y_max": "112.99803921568628"
+      }
+    ],
+    "sha256": "b74339e99f186fb62ef32931001c9f4926b1016498ccf2a8a7bfa6bf94903708",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000024.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "174.00196078431372",
+        "y_min": "76.00196078431372",
+        "x_max": "223.99803921568628",
+        "y_max": "116.99803921568628"
+      }
+    ],
+    "sha256": "20ee0f94624187aca24d1679344b5d52fa2f458b6c730b1d0822b78b6fbe8e2e",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000025.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "171.00196078431372",
+        "y_min": "74.00196078431372",
+        "x_max": "217.99803921568628",
+        "y_max": "113.99803921568628"
+      }
+    ],
+    "sha256": "cc57436f5b759b98a504567e6fa3aba93f1554f238ab24e686d3ddee9506a30a",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000026.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "172.00196078431372",
+        "y_min": "70.00196078431372",
+        "x_max": "225.99803921568628",
+        "y_max": "111.99803921568628"
+      }
+    ],
+    "sha256": "a9100f32a7960e4d981931b92e3a71e039e125851646b8b652f0c367dcbf84b1",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000029.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "207.00196078431367",
+        "y_min": "78.00196078431372",
+        "x_max": "259.9980392156863",
+        "y_max": "124.99803921568628"
+      }
+    ],
+    "sha256": "c99d45c929028b417bacb50bcb9a62ddd5e910e7ce2f9387d0ad607f90b5fa6b",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000030.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "216.00196078431367",
+        "y_min": "91.00196078431372",
+        "x_max": "271.9980392156863",
+        "y_max": "135.99803921568628"
+      }
+    ],
+    "sha256": "df90f1395511cc0d65943f9821434cb35a9fefc33e52aa6a3730aebc4c0d4931",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000031.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "216.00196078431367",
+        "y_min": "100.00196078431372",
+        "x_max": "275.9980392156863",
+        "y_max": "150.99803921568628"
+      }
+    ],
+    "sha256": "b8e6e7c236d8d180b30dc02b72207168e9c2312b97e2657e7ffa62d488bacdee",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000032.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "219.00196078431367",
+        "y_min": "105.00196078431372",
+        "x_max": "272.9980392156863",
+        "y_max": "156.99803921568628"
+      }
+    ],
+    "sha256": "913bc56b77f574143dfea018a3d4e3c37d3f7cd4b7066115f589e1d9ea1dce85",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000033.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "210.00196078431367",
+        "y_min": "107.00196078431372",
+        "x_max": "264.9980392156863",
+        "y_max": "153.99803921568628"
+      }
+    ],
+    "sha256": "475d58576ab434bdd460914e0ca2e8bdbceee7e54f137566e94a55b9d78df737",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000035.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "199.00196078431367",
+        "y_min": "104.00196078431372",
+        "x_max": "259.9980392156863",
+        "y_max": "153.99803921568628"
+      }
+    ],
+    "sha256": "e8be11e8ad848efc7ad4a743747f8a59d4d8b524c94b7dd7ba6d03aef6948e8b",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000036.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "210.00196078431367",
+        "y_min": "102.00196078431372",
+        "x_max": "272.9980392156863",
+        "y_max": "158.99803921568628"
+      }
+    ],
+    "sha256": "01d97eafa99e1672d8cb4615776342cfb7f7f17a493a98bf4f98c587135213b5",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000037.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "227.00196078431367",
+        "y_min": "105.00196078431372",
+        "x_max": "290.9980392156863",
+        "y_max": "163.99803921568628"
+      }
+    ],
+    "sha256": "ccadced07ddf733f72d76e829350f00e818772a7e64048e5826ac237411c379c",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000039.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "230.00196078431367",
+        "y_min": "134.00196078431372",
+        "x_max": "299.9980392156863",
+        "y_max": "199.99803921568628"
+      }
+    ],
+    "sha256": "4ce7b7521b75f675b616c5082382f5761e9dbb7c73e9902cf6af7c7095af15ab",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000040.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "221.00196078431367",
+        "y_min": "152.00196078431372",
+        "x_max": "290.9980392156863",
+        "y_max": "223.99803921568628"
+      }
+    ],
+    "sha256": "cba40184669761e1681c5627422f265f27b6935d81bb752041e2eae0a36f0786",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000041.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "207.00196078431367",
+        "y_min": "167.00196078431372",
+        "x_max": "281.9980392156863",
+        "y_max": "240.99803921568628"
+      }
+    ],
+    "sha256": "67f97fad8371f45dcba280e4580cd360adf3ae47e3ac329ac9bb7611260846cd",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000042.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "197.00196078431367",
+        "y_min": "182.00196078431367",
+        "x_max": "275.9980392156863",
+        "y_max": "255.99803921568628"
+      }
+    ],
+    "sha256": "03bb4c95044ccc3f3a75c31abc570f4ab62afc0c6a2192123ad62e733d3c0b99",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000043.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "192.00196078431367",
+        "y_min": "191.00196078431367",
+        "x_max": "272.9980392156863",
+        "y_max": "269.9980392156863"
+      }
+    ],
+    "sha256": "4e317cbb90d53109972adb2ac6560b1292823bd6179a108a3e2c1396604092f9",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000044.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "195.00196078431367",
+        "y_min": "203.00196078431367",
+        "x_max": "280.9980392156863",
+        "y_max": "270.9980392156863"
+      }
+    ],
+    "sha256": "37023bd1190392905a338076cb819fc963d97e7cf0d455a749e4b19340040f7a",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000045.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "196.00196078431367",
+        "y_min": "215.00196078431367",
+        "x_max": "282.9980392156863",
+        "y_max": "270.9980392156863"
+      }
+    ],
+    "sha256": "48647909dd5842b72624519c83ca1cbcd90c5a8a0eb5279f5d13247f07c061b6",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000046.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "200.00196078431367",
+        "y_min": "220.00196078431367",
+        "x_max": "289.9980392156863",
+        "y_max": "270.9980392156863"
+      }
+    ],
+    "sha256": "aa9c9019b1306828d3585a8202ad6b02220f51c101330424fdbf3e687635b04a",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000047.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "195.00196078431367",
+        "y_min": "228.00196078431367",
+        "x_max": "286.9980392156863",
+        "y_max": "270.9980392156863"
+      }
+    ],
+    "sha256": "9f940a9a86c81824b62e9497cc2fe238ad83cb67da3d521ab8b5bb886ade20da",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000048.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "191.00196078431367",
+        "y_min": "236.00196078431367",
+        "x_max": "284.9980392156863",
+        "y_max": "270.9980392156863"
+      }
+    ],
+    "sha256": "07e560127e840b93fdd2c2e593b43ad44e83c342b2cfededefcfbf0ce9e7252f",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000081_frame0000049.jpg",
+    "source_split": "train",
+    "group": "vid_000081",
+    "annotations": [
+      {
+        "label": "trash_metal",
+        "x_min": "198.00196078431367",
+        "y_min": "244.00196078431367",
+        "x_max": "288.9980392156863",
+        "y_max": "270.9980392156863"
+      }
+    ],
+    "sha256": "c19b9b48d830030eb087f8d6b5bd1672d464d318eea874c3af6974e61798f1f6",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000005.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "animal_shells",
+        "x_min": "0.0019685039370078",
+        "y_min": "256.0026455026455",
+        "x_max": "38.99342105263158",
+        "y_max": "270.9980392156863"
+      }
+    ],
+    "sha256": "d4dfd29117025716b9c5f1675ac5eddd198c828e10133a317a9ff79bb2ece41f",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000128_frame0000006.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "animal_shells",
+        "x_min": "85.00561797752809",
+        "y_min": "230.00331125827816",
+        "x_max": "123.99615384615385",
+        "y_max": "253.96875"
+      }
+    ],
+    "sha256": "52f53ae9b6bf14847a1ddb6b7ba04d09ba2d5303ebafad5136327fe3095d0498",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000128_frame0000007.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "animal_shells",
+        "x_min": "168.00277777777777",
+        "y_min": "213.01388888888889",
+        "x_max": "203.9903846153846",
+        "y_max": "234.9927536231884"
+      }
+    ],
+    "sha256": "695c0e0947ab8fa85fbf2d9982884f309f322d08a3b3a2d852b2f26f5b52755e",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000128_frame0000008.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "animal_shells",
+        "x_min": "243.002",
+        "y_min": "209.00925925925927",
+        "x_max": "274.9943820224719",
+        "y_max": "232.99748743718592"
+      }
+    ],
+    "sha256": "10126255b3ec6c1eda3b2df7e8c2f962c5686c9e76a9b1daf59a8d7fc2bf48dc",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000128_frame0000009.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "animal_shells",
+        "x_min": "306.0090909090909",
+        "y_min": "222.0027173913044",
+        "x_max": "346.9945652173913",
+        "y_max": "239.99752475247524"
+      }
+    ],
+    "sha256": "32f9d4e11a3829685c64baadd18d67f44b3aa322d81847c18c56b6c942bfa607",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000128_frame0000010.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "animal_shells",
+        "x_min": "374.0178571428572",
+        "y_min": "247.002024291498",
+        "x_max": "411.98",
+        "y_max": "264.95454545454544"
+      }
+    ],
+    "sha256": "e8f0531011f715426cb9c65b66b472d6da5dca7ef104faa1b99f0aa4b7bc0ec4",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000128_frame0000011.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "161.00196078431372",
+        "y_min": "75.00196078431372",
+        "x_max": "212.99803921568628",
+        "y_max": "103.99803921568628"
+      }
+    ],
+    "sha256": "143934c3ea9b81312f4b96451cfabf5108f3d8988cb7e92b5eb601f34851f620",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000012.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "189.00196078431367",
+        "y_min": "80.00196078431372",
+        "x_max": "242.99803921568628",
+        "y_max": "105.99803921568628"
+      }
+    ],
+    "sha256": "d817cb588d0d7447122062004e9b225a795e72cc62ca207fc37f77af8df6561f",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000013.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "190.00196078431367",
+        "y_min": "91.00196078431372",
+        "x_max": "241.99803921568628",
+        "y_max": "123.99803921568628"
+      }
+    ],
+    "sha256": "13aa42a3cb638cedc50c5da1c28e3f584979e188ad2d22307bd01b1ecf9382fd",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000014.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "172.00196078431372",
+        "y_min": "110.0",
+        "x_max": "219.99803921568628",
+        "y_max": "136.99803921568628"
+      }
+    ],
+    "sha256": "c91e9e8ed47f9f748dad232690f7b2337683cd1cfe195818e99988c0d3849184",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000015.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "155.0047619047619",
+        "y_min": "125.00235849056604",
+        "x_max": "216.9974358974359",
+        "y_max": "162.98809523809524"
+      }
+    ],
+    "sha256": "e0c288a931a08d24084aa14939cc6fcce077b1314e0c4b62144939d069cdc157",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000016.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "154.00714285714287",
+        "y_min": "149.00222222222223",
+        "x_max": "218.99707602339183",
+        "y_max": "190.9957983193277"
+      }
+    ],
+    "sha256": "72b83d459bd0ca381635da946d7838b0e28d0e52651b17878a017547d98afea8",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000017.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "157.015625",
+        "y_min": "175.00267379679144",
+        "x_max": "225.9965034965035",
+        "y_max": "220.75"
+      }
+    ],
+    "sha256": "99a6a1067c822f40616a4e8bfeeafd2cde53ad61e6144d6ce287a9768b73d62f",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000018.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "168.002688172043",
+        "y_min": "202.0054347826087",
+        "x_max": "235.99720670391065",
+        "y_max": "245.99621212121207"
+      }
+    ],
+    "sha256": "1fd6bc1602cad8c1452907a5f70b46d5730637c0cbbd82ca6341f60a9ca96d1b",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000128_frame0000019.jpg",
+    "source_split": "test",
+    "group": "vid_000128",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "180.002538071066",
+        "y_min": "233.0031055900621",
+        "x_max": "245.99761904761905",
+        "y_max": "270.99801587301585"
+      }
+    ],
+    "sha256": "5531ccd9ec5c73e4e459cd221d580c0ea019227de4b434d2cf18e03aea64e996",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000182_frame0000046.jpg",
+    "source_split": "test",
+    "group": "vid_000182",
+    "annotations": [
+      {
+        "label": "rov",
+        "x_min": "128.00196078431372",
+        "y_min": "249.00196078431367",
+        "x_max": "480.9980392156863",
+        "y_max": "318.9980392156863"
+      },
+      {
+        "label": "trash_wood",
+        "x_min": "214.00196078431367",
+        "y_min": "143.00196078431372",
+        "x_max": "412.9980392156863",
+        "y_max": "188.99803921568628"
+      }
+    ],
+    "sha256": "1430f754fb01ff3a044e6e579afa58fa4bc43491646fa49ea809aebf69a9a172",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000002.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "297.0019607843137",
+        "y_min": "225.00196078431367",
+        "x_max": "327.9980392156863",
+        "y_max": "239.99803921568628"
+      }
+    ],
+    "sha256": "aa9ef2e9d226d716acbf9f8d9a51689fbd104f37c2215d66d76ab9947a6486b0",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000003.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "297.0019607843137",
+        "y_min": "227.00196078431367",
+        "x_max": "322.9980392156863",
+        "y_max": "241.99803921568628"
+      }
+    ],
+    "sha256": "19f68b01f77cec41f02309b2b79e2544f8969dbe9c6f0cc3efe0504c6ac3c1f2",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000004.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "299.0019607843137",
+        "y_min": "233.00196078431367",
+        "x_max": "326.9980392156863",
+        "y_max": "249.99803921568628"
+      }
+    ],
+    "sha256": "8f6730f793d3a1c0fe7d9a84f6471bb7b9398d55838393dd1b5a35375bea8c4a",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000005.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "301.0019607843137",
+        "y_min": "240.00196078431367",
+        "x_max": "326.9980392156863",
+        "y_max": "257.9980392156863"
+      }
+    ],
+    "sha256": "d988c94e17f1aa76ae0971dd4921e87704957acda828026583e4196c18fbf9b4",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000006.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "301.0019607843137",
+        "y_min": "248.00196078431367",
+        "x_max": "328.9980392156863",
+        "y_max": "267.9980392156863"
+      }
+    ],
+    "sha256": "35cca040d3319cc3e81fccdf78d620498ef7726d3131fe8202a0abafbc88c042",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000007.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "301.0019607843137",
+        "y_min": "256.0019607843137",
+        "x_max": "329.9980392156863",
+        "y_max": "276.9980392156863"
+      }
+    ],
+    "sha256": "77d79caeafa2194d7a29dffd1d0fd79b13c7b6a5419f2adb6fac0ff461eb6004",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000008.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "304.0019607843137",
+        "y_min": "261.0019607843137",
+        "x_max": "334.9980392156863",
+        "y_max": "280.9980392156863"
+      }
+    ],
+    "sha256": "204f34abf580bec7e8994093440a76bb9c0e819103ecef822384e03548c74542",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000009.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "307.0019607843137",
+        "y_min": "267.0019607843137",
+        "x_max": "338.9980392156863",
+        "y_max": "287.9980392156863"
+      }
+    ],
+    "sha256": "d10e013959ad5fbf373af635163238b49cd7f6ef00b29c4515d75640f87ac0d3",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000010.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "305.0019607843137",
+        "y_min": "265.0019607843137",
+        "x_max": "339.9980392156863",
+        "y_max": "288.9980392156863"
+      }
+    ],
+    "sha256": "9e24d8d370a2a2f54e5b4b7a33bf677c3aa2fa63682e78542b0bc232647ca2d0",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000011.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "304.0019607843137",
+        "y_min": "265.0019607843137",
+        "x_max": "342.9980392156863",
+        "y_max": "288.9980392156863"
+      }
+    ],
+    "sha256": "8f8f6d5e070c4ef4d90982e5123c833510f2b177d9d564ffd84bad68b1bb5e41",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000012.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "307.0019607843137",
+        "y_min": "270.0019607843137",
+        "x_max": "342.9980392156863",
+        "y_max": "293.9980392156863"
+      }
+    ],
+    "sha256": "7a85d43eca1fee93f254cf3cd3f4a0b540d2cd4cb4c0c57f62b345832b299616",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000013.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "312.0019607843137",
+        "y_min": "282.0019607843137",
+        "x_max": "349.9980392156863",
+        "y_max": "307.9980392156863"
+      }
+    ],
+    "sha256": "10458fa3341ffd206bea3b37e6816c83ca2433f6de0ae3d9560eed7f9d914da0",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000014.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "313.0019607843137",
+        "y_min": "297.0019607843137",
+        "x_max": "351.9980392156863",
+        "y_max": "324.9980392156863"
+      }
+    ],
+    "sha256": "8bb53ca22237482ea74aea96644efd64d1fa9624d0b79290e6dea1c8ed7f2206",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000015.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "315.0019607843137",
+        "y_min": "305.0019607843137",
+        "x_max": "355.9980392156863",
+        "y_max": "334.9980392156863"
+      }
+    ],
+    "sha256": "bf1ba17ef75541157ddccac3cf9197f142be37d42c2bf08fa6720f75c2455cc9",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000016.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "317.0019607843137",
+        "y_min": "313.0019607843137",
+        "x_max": "360.9980392156863",
+        "y_max": "343.9980392156863"
+      }
+    ],
+    "sha256": "84f4e8da8e8f4144bea18c6441051997b867c7d497f75be135a60fa8dd4119c5",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000017.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "321.0019607843137",
+        "y_min": "322.0019607843137",
+        "x_max": "365.9980392156863",
+        "y_max": "356.9980392156863"
+      }
+    ],
+    "sha256": "b8d01f0e3c62e5298302aa026f4318cb9ee4db670424c88d3c25678a3ebac9fa",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000213_frame0000018.jpg",
+    "source_split": "test",
+    "group": "vid_000213",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "321.0019607843137",
+        "y_min": "332.0019607843137",
+        "x_max": "369.0",
+        "y_max": "360.9980392156863"
+      }
+    ],
+    "sha256": "8effd621217b18b6abf602285eec9a1b2d72948943c22b51c1a49ca256726842",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000310_frame0000018.jpg",
+    "source_split": "test",
+    "group": "vid_000310",
+    "annotations": [
+      {
+        "label": "rov",
+        "x_min": "286.0019607843137",
+        "y_min": "269.01851851851853",
+        "x_max": "318.9980392156863",
+        "y_max": "318.9980392156863"
+      }
+    ],
+    "sha256": "57384031b95ff192862fa5e8950cd052136237c2151eea9ae6efe6bc98af252c",
+    "width": 480,
+    "height": 360,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000322_frame0000002.jpg",
+    "source_split": "test",
+    "group": "vid_000322",
+    "annotations": [
+      {
+        "label": "rov",
+        "x_min": "0.0025",
+        "y_min": "75.002",
+        "x_max": "125.98333333333332",
+        "y_max": "270.9978632478632"
+      }
+    ],
+    "sha256": "30fb7087864d2bc217f10e77a67d1555a7052faf3adb0070eac8ac3b26b412a3",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 0
+  },
+  {
+    "file_name": "vid_000346_frame0000010.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "170.00196078431372",
+        "y_min": "42.00196078431373",
+        "x_max": "183.99803921568628",
+        "y_max": "53.99803921568628"
+      }
+    ],
+    "sha256": "bd14f65309f09eb26993a78e1cf202367c4b846184929384194e529bc784a07a",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000012.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "173.00196078431372",
+        "y_min": "59.00196078431373",
+        "x_max": "187.99803921568628",
+        "y_max": "71.99803921568628"
+      }
+    ],
+    "sha256": "150258b503edafeee04a6e5b1f8bbc9c4f16fcd3b9eeb16bbdd7eb585a8a0ba7",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000013.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "180.00196078431372",
+        "y_min": "65.00196078431372",
+        "x_max": "195.99803921568628",
+        "y_max": "78.99803921568628"
+      }
+    ],
+    "sha256": "9e2857d1b18ecac62acce7bfed7e0dd86dc74bcfe70bdfda46e13632f0223971",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000014.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "189.00196078431367",
+        "y_min": "72.00196078431372",
+        "x_max": "205.99803921568628",
+        "y_max": "86.99803921568628"
+      }
+    ],
+    "sha256": "16e7698aed81f249ecd68db426d37aa1c42ce7c4627b5089e2e2796b70f1cb1c",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000018.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "220.00196078431367",
+        "y_min": "107.00196078431372",
+        "x_max": "237.99803921568628",
+        "y_max": "122.99803921568628"
+      }
+    ],
+    "sha256": "e297b79ab39ff4997be98313538488174c5a95f51983f3f4975ce8677674a78e",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000019.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "227.00196078431367",
+        "y_min": "113.00196078431372",
+        "x_max": "246.99803921568628",
+        "y_max": "129.99803921568628"
+      }
+    ],
+    "sha256": "0d50e0518f0d2afdb246482d90baca09440cdf7dcf67246a31239b84825bbcf9",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000020.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "228.00196078431367",
+        "y_min": "122.00196078431372",
+        "x_max": "246.99803921568628",
+        "y_max": "138.99803921568628"
+      }
+    ],
+    "sha256": "2f359b3a26acef25259260169c5ac6745a96073ee0358df4e749d5b03bd58b52",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000021.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "221.00196078431367",
+        "y_min": "131.00196078431372",
+        "x_max": "240.99803921568628",
+        "y_max": "149.99803921568628"
+      }
+    ],
+    "sha256": "d54bc8f9509f28bb0bfea90fce7f1bc8b0665b5d7aa0622d3c462131e79317af",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000022.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "214.00196078431367",
+        "y_min": "141.00196078431372",
+        "x_max": "234.99803921568628",
+        "y_max": "157.99803921568628"
+      }
+    ],
+    "sha256": "b184847a27fde7d5a871fe010dbe4956fd900f46ff88df4f859bc65807e9f24b",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000026.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_etc",
+        "x_min": "217.00196078431367",
+        "y_min": "170.00196078431372",
+        "x_max": "240.99803921568628",
+        "y_max": "188.99803921568628"
+      }
+    ],
+    "sha256": "77d6366ac4d5a4ee542b721dd10af903b3c29ecc6cae1f9fdb8bd1649200b32b",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000027.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "221.00196078431367",
+        "y_min": "176.00196078431372",
+        "x_max": "244.99803921568628",
+        "y_max": "200.99803921568628"
+      }
+    ],
+    "sha256": "dde5ec34981534306cda43558f97572ad98c8c67e216eb7e59f570b5a8d1304e",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000032.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "205.00196078431367",
+        "y_min": "224.00196078431367",
+        "x_max": "237.99803921568628",
+        "y_max": "257.9980392156863"
+      }
+    ],
+    "sha256": "73fe419aedaa702b2d50e11cd0f0a88ae798fd92cdf559d7aaeed9eb0e13813b",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000036.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "174.00196078431372",
+        "y_min": "152.00196078431372",
+        "x_max": "221.99803921568628",
+        "y_max": "199.99803921568628"
+      }
+    ],
+    "sha256": "7150db76b16e0202d65938ad73dfbc4e558d9574c62f086224365e39a980a055",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000037.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "231.00196078431367",
+        "y_min": "174.00196078431372",
+        "x_max": "288.9980392156863",
+        "y_max": "231.99803921568628"
+      }
+    ],
+    "sha256": "a26afbc17c98574872ddd577162b59e4f1ec045f659fcdf8f02dbeeee832a8cf",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000041.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "252.00196078431367",
+        "y_min": "201.00196078431367",
+        "x_max": "312.9980392156863",
+        "y_max": "261.9980392156863"
+      }
+    ],
+    "sha256": "586e2e6fb8406f175b549171c4579587c0889fca44966b7d562fea6933feac18",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000043.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "241.00196078431367",
+        "y_min": "189.00196078431367",
+        "x_max": "286.9980392156863",
+        "y_max": "235.99803921568628"
+      }
+    ],
+    "sha256": "2a8ca31ac8f92b4f5849f9fd887e88aefd43c770407de497f6f80913eaf78173",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000044.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "246.00196078431367",
+        "y_min": "176.00196078431372",
+        "x_max": "274.9980392156863",
+        "y_max": "205.99803921568628"
+      }
+    ],
+    "sha256": "4453dca82e09923fb8ce40f8c716403cb494b92f869e5b89d9fdd936091e6817",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  },
+  {
+    "file_name": "vid_000346_frame0000045.jpg",
+    "source_split": "test",
+    "group": "vid_000346",
+    "annotations": [
+      {
+        "label": "trash_plastic",
+        "x_min": "226.00196078431367",
+        "y_min": "209.00196078431367",
+        "x_max": "256.9980392156863",
+        "y_max": "242.99803921568628"
+      }
+    ],
+    "sha256": "191cd9911135e2ecb1a48ac542ba2fe0d1970bbc5b702a13fd0579fd31ddc91d",
+    "width": 480,
+    "height": 270,
+    "debris_boxes": 1
+  }
+]

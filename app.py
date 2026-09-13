@@ -23,6 +23,13 @@ st.write(
     "A local marine-debris detection prototype with video-disjoint evaluation and a transparent CPU deployment benchmark."
 )
 st.caption("Marine debris review • one detection class • local processing • human review required")
+status_path = REPORTS / "experiment_status.json"
+experiment_status = (
+    json.loads(status_path.read_text()) if status_path.exists() else {"state": "complete"}
+)
+if experiment_status["state"] != "complete":
+    st.info(experiment_status["message"])
+
 demo, evidence, quality, about = st.tabs(
     ["Inspect footage", "Measured results", "Data quality", "How it works"]
 )
@@ -35,6 +42,13 @@ def load_detector(path, mtime):
 
 def read_report(name):
     p = REPORTS / name
+    if experiment_status["state"] != "complete" and name in {
+        "comparison.json",
+        "test_metrics.json",
+        "benchmark.json",
+        "selection.json",
+    }:
+        p = REPORTS / "baseline_v1" / name
     return json.loads(p.read_text()) if p.exists() else None
 
 
@@ -185,7 +199,7 @@ with evidence:
     metrics = read_report("test_metrics.json")
     benchmark = read_report("benchmark.json")
     if metrics:
-        st.subheader("Held-out test evaluation")
+        st.subheader("Reference-test evaluation")
         st.dataframe(
             [
                 {
@@ -202,6 +216,31 @@ with evidence:
             st.warning(
                 "The initial INT8 experiment produced zero test AP. It is retained as a failed optimization experiment; the demo uses FP32 ONNX."
             )
+    fresh = read_report("final_audit_results.json")
+    if (
+        fresh
+        and experiment_status["state"] == "complete"
+        and any(
+            r["backend"] == "onnx_fp32" and r["sha256"] == fresh["model_sha256"]
+            for r in metrics or []
+        )
+    ):
+        st.subheader("Additional fresh audit")
+        st.write(
+            f"{fresh['images']} images from {fresh['videos']} previously unused videos, evaluated after model selection."
+        )
+        st.dataframe(
+            [
+                {
+                    "mAP50": round(fresh["metrics"]["metrics/mAP50(B)"], 4),
+                    "mAP50–95": round(fresh["metrics"]["metrics/mAP50-95(B)"], 4),
+                }
+            ],
+            hide_index=True,
+        )
+        st.caption(
+            "A small remaining-video sample; not evidence of broad geographic generalization."
+        )
     if benchmark:
         st.subheader("Warm CPU forward-pass latency")
         st.dataframe(

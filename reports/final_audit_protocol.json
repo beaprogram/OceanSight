@@ -1,0 +1,9 @@
+{
+  "reserved_at_utc": "2026-09-13T02:59:10.223333+00:00",
+  "policy": "All annotation-listed frames from every source video absent from BOTH v1 and v2 train/validation/reference-test manifests. Membership frozen before model evaluation.",
+  "images": 87,
+  "videos": 9,
+  "boxes": 78,
+  "manifest_sha256": "0f9ad3960a8ca66ee41eb1e6a9cbbecee8be3609bfd3a0694a369b1c85055fe8",
+  "limitations": "Small, availability-defined remaining-video sample. Not an official benchmark or a location-disjoint population estimate. Evaluate the already selected FP32 deployment only; do not tune on this audit."
+}

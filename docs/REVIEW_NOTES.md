@@ -17,7 +17,7 @@ Do not relabel these test images and report a new score as though it were untouc
 
 ## Failed optimization
 
-The initial broad static INT8 QDQ conversion ran successfully but achieved zero test AP. Its raw outputs also differ substantially from the FP32 baseline. This is a useful example of why conversion success and file compression are insufficient acceptance criteria. FP32 ONNX is the working deployment path. The exact cause of the INT8 failure has not been established.
+The initial broad static INT8 QDQ conversion ran successfully but achieved zero test AP. Its raw outputs also differ substantially from the FP32 baseline. This is a useful example of why conversion success and file compression are insufficient acceptance criteria. FP32 ONNX is the working deployment path. The initial run did not establish the cause; the later diagnosis below identifies confidence collapse.
 
 ## Verification correction
 
@@ -30,3 +30,7 @@ The v2 top-12 video-diverse queue includes prominent ROV equipment, fish, crabs 
 ## Confirmed numerical failure mechanism
 
 The v1 quantized output has a dequantization scale of 2.0351, and all confidence values were zero on ten validation images. Sharing a range with pixel coordinates made the output resolution too coarse for probabilities. The revised Conv-only recipe leaves that output floating-point; its validation gate and final evaluation determine whether the replacement is usable.
+
+## Final v2 visual review
+
+The regenerated contact sheet confirms persistent localization and scene errors. In `vid_000205_frame0000041.jpg`, four predictions do not match the single large labeled region at IoU 0.5. In `vid_000203_frame0000009.jpg`, predictions cover smaller parts of a larger labeled region (2 FP, 2 misses). `vid_000085_frame0000036.jpg` shows multiple overlapping predictions around a rope-like structure (3 FP, 1 miss). `vid_000320_frame0000056.jpg` still has no predictions for two labels in a cluttered scene. These are observations, not verified diagnoses of annotation quality.

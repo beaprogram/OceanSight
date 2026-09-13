@@ -1,0 +1,4 @@
+{
+  "model": "best.onnx",
+  "reason": "FP32 ONNX is the demo default; INT8 is an evaluated experimental alternative, not automatically selected using test results."
+}

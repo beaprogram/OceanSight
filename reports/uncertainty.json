@@ -1,0 +1,15 @@
+{
+  "video_groups": 45,
+  "repetitions": 2000,
+  "seed": 42,
+  "precision_95_percentile_interval": [
+    0.4431487843551797,
+    0.7272727272727273
+  ],
+  "recall_95_percentile_interval": [
+    0.39325842696629215,
+    0.6534977604903346
+  ],
+  "method": "Resample whole source videos with replacement; pool TP/FP/FN for each replicate.",
+  "limitations": "Conditional on this fixed model and reference holdout. Not training-seed uncertainty, AP intervals or evidence of location independence."
+}

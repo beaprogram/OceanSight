@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "App loaded in browser",
+    "20-frame generated clip uploaded and processed",
+    "Per-frame detection chart displayed 20 frames",
+    "CSV download clicked successfully",
+    "Annotated-clip download remained available after the rerun"
+  ],
+  "fixture": "20 repeats of one reference image; interface test only, not a video accuracy benchmark",
+  "model_stage": "archived FP32 v1 model while longer training runs",
+  "final_release": {
+    "model_sha256": "8293a09fc26ec2cfbb149388fd4ffb69864dd0696a83db8331ddbbcf9fa8a02d",
+    "fp32_video_fixture_frames": 20,
+    "video_csv_download_preserves_clip_download": true,
+    "int8_image_prediction_visible": true,
+    "results_and_fresh_audit_visible": true,
+    "scope": "Browser functional fixture uses repeated still frames; not a video accuracy benchmark."
+  }
+}

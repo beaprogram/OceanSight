@@ -1,0 +1,108 @@
+{
+  "extractor": "torchvision ResNet18 IMAGENET1K_V1, frozen, 512-D average-pool features",
+  "fit_split": "train only",
+  "images": 1680,
+  "pca_components": 32,
+  "explained_variance": 0.6302484273910522,
+  "pipeline": "StandardScaler -> PCA(32) -> KMeans(8), IsolationForest(250)",
+  "review_policy": "At most one image per source video in the top-12 contact sheet",
+  "interpretation": "Pretrained visual features capture appearance/content, but clusters have no verified semantic labels. No data automatically removed.",
+  "top_review_candidates": [
+    {
+      "file_name": "vid_000162_frame0000001.jpg",
+      "video": "vid_000162",
+      "cluster": 7,
+      "review_score": 0.5962498197575682,
+      "pca_x": 16.235240936279297,
+      "pca_y": 2.5904312133789062
+    },
+    {
+      "file_name": "vid_000444_frame0000108.jpg",
+      "video": "vid_000444",
+      "cluster": 7,
+      "review_score": 0.5935143022239867,
+      "pca_x": 20.74327850341797,
+      "pca_y": -2.0858912467956543
+    },
+    {
+      "file_name": "vid_000055_frame0000005.jpg",
+      "video": "vid_000055",
+      "cluster": 3,
+      "review_score": 0.5836684610043092,
+      "pca_x": 22.109466552734375,
+      "pca_y": 3.8376903533935547
+    },
+    {
+      "file_name": "vid_000315_frame0000021.jpg",
+      "video": "vid_000315",
+      "cluster": 5,
+      "review_score": 0.5717907533171043,
+      "pca_x": 11.520880699157715,
+      "pca_y": -3.8907837867736816
+    },
+    {
+      "file_name": "vid_000551_frame0000121.jpg",
+      "video": "vid_000551",
+      "cluster": 7,
+      "review_score": 0.5706900803656383,
+      "pca_x": 11.785393714904785,
+      "pca_y": -4.632147312164307
+    },
+    {
+      "file_name": "vid_000440_frame0000114.jpg",
+      "video": "vid_000440",
+      "cluster": 7,
+      "review_score": 0.5658244539779295,
+      "pca_x": 17.783039093017578,
+      "pca_y": 9.969076156616211
+    },
+    {
+      "file_name": "vid_000437_frame0000031.jpg",
+      "video": "vid_000437",
+      "cluster": 7,
+      "review_score": 0.5645353396692696,
+      "pca_x": 14.633017539978027,
+      "pca_y": 13.681802749633789
+    },
+    {
+      "file_name": "vid_000432_frame0000019.jpg",
+      "video": "vid_000432",
+      "cluster": 7,
+      "review_score": 0.5605492324010531,
+      "pca_x": 17.25563621520996,
+      "pca_y": 4.968403339385986
+    },
+    {
+      "file_name": "vid_000443_frame0000069.jpg",
+      "video": "vid_000443",
+      "cluster": 7,
+      "review_score": 0.5595961522267142,
+      "pca_x": 11.882296562194824,
+      "pca_y": -2.3132894039154053
+    },
+    {
+      "file_name": "vid_000441_frame0000009.jpg",
+      "video": "vid_000441",
+      "cluster": 7,
+      "review_score": 0.5573819989325993,
+      "pca_x": 15.089461326599121,
+      "pca_y": 3.4852402210235596
+    },
+    {
+      "file_name": "vid_000319_frame0000039.jpg",
+      "video": "vid_000319",
+      "cluster": 7,
+      "review_score": 0.5548647462055857,
+      "pca_x": 11.269403457641602,
+      "pca_y": 4.0130414962768555
+    },
+    {
+      "file_name": "vid_000143_frame0000066.jpg",
+      "video": "vid_000143",
+      "cluster": 3,
+      "review_score": 0.5548509178689297,
+      "pca_x": 30.48284912109375,
+      "pca_y": -3.9390058517456055
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "backend": "onnx_fp32",
+  "recheck": false,
+  "images": 87,
+  "videos": 9,
+  "model_sha256": "8293a09fc26ec2cfbb149388fd4ffb69864dd0696a83db8331ddbbcf9fa8a02d",
+  "imgsz": 416,
+  "metrics": {
+    "metrics/precision(B)": 0.8897421198024268,
+    "metrics/recall(B)": 0.8589743589743589,
+    "metrics/mAP50(B)": 0.9208287618666433,
+    "metrics/mAP50-95(B)": 0.6523362967311064,
+    "fitness": 0.6523362967311064
+  },
+  "protocol": {
+    "reserved_at_utc": "2026-09-13T02:59:10.223333+00:00",
+    "policy": "All annotation-listed frames from every source video absent from BOTH v1 and v2 train/validation/reference-test manifests. Membership frozen before model evaluation.",
+    "images": 87,
+    "videos": 9,
+    "boxes": 78,
+    "manifest_sha256": "0f9ad3960a8ca66ee41eb1e6a9cbbecee8be3609bfd3a0694a369b1c85055fe8",
+    "limitations": "Small, availability-defined remaining-video sample. Not an official benchmark or a location-disjoint population estimate. Evaluate the already selected FP32 deployment only; do not tune on this audit."
+  }
+}

@@ -20,6 +20,8 @@ def run():
     for r in comparison:
         source = ROOT / r["run_directory"] / "results.csv"
         shutil.copy2(source, training / f"{r['model']}_v2.csv")
+        config = ROOT / r["run_directory"] / "args.yaml"
+        shutil.copy2(config, training / f"{r['model']}_v2_args.yaml")
         frame = pd.read_csv(source)
         axes[0].plot(frame["epoch"], frame["metrics/mAP50-95(B)"], label=r["model"])
         axes[1].plot(frame["epoch"], frame["train/box_loss"], label=r["model"])

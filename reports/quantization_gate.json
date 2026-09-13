@@ -1,0 +1,26 @@
+{
+  "criterion": "INT8 validation mAP50-95 loss <= 0.02 absolute, and AP > 0",
+  "passed": true,
+  "validation": [
+    {
+      "backend": "onnx_fp32",
+      "metrics": {
+        "metrics/precision(B)": 0.6128683073955927,
+        "metrics/recall(B)": 0.43790016714170227,
+        "metrics/mAP50(B)": 0.49069067441246994,
+        "metrics/mAP50-95(B)": 0.23124995114126548,
+        "fitness": 0.23124995114126548
+      }
+    },
+    {
+      "backend": "onnx_int8",
+      "metrics": {
+        "metrics/precision(B)": 0.7078144995222637,
+        "metrics/recall(B)": 0.3866128033567684,
+        "metrics/mAP50(B)": 0.4491259060609217,
+        "metrics/mAP50-95(B)": 0.21417794738327461,
+        "fitness": 0.21417794738327461
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "purpose": "Verify proposed fix on archived v1 weights before final v2 export. Validation only.",
+  "calibration_images": 32,
+  "calibration_split": "train",
+  "recipe": "preprocess + Conv-only QDQ + DFL excluded",
+  "results": [
+    {
+      "backend": "fp32",
+      "validation": {
+        "metrics/precision(B)": 0.5947259658926547,
+        "metrics/recall(B)": 0.2978723404255319,
+        "metrics/mAP50(B)": 0.3610516642921056,
+        "metrics/mAP50-95(B)": 0.20210423455495513,
+        "fitness": 0.20210423455495513
+      },
+      "size_mb": 12.112803
+    },
+    {
+      "backend": "conv_int8",
+      "validation": {
+        "metrics/precision(B)": 0.6894547888176388,
+        "metrics/recall(B)": 0.2872340425531915,
+        "metrics/mAP50(B)": 0.3754082645763022,
+        "metrics/mAP50-95(B)": 0.2136158369719733,
+        "fitness": 0.2136158369719733
+      },
+      "size_mb": 3.321507
+    }
+  ]
+}

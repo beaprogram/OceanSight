@@ -11,6 +11,7 @@ def run():
     data = read("dataset.json")
     comparison = read("comparison.json")
     selection = read("selection.json")
+    architecture = read("architecture_benchmark.json")
     metrics = read("test_metrics.json")
     benchmark = read("benchmark.json")
     gate = read("quantization_gate.json")
@@ -70,6 +71,20 @@ def run():
         "| Runtime | Median ms | P95 ms | Timed calls |",
         "|---|---:|---:|---:|",
     ]
+    # Insert the architecture table before the runtime timing section.
+    index = lines.index("## CPU timing")
+    extra = [
+        "## Architecture compute comparison",
+        "",
+        "| Detector | Parameters | Checkpoint MB | CPU median ms | CPU P95 ms |",
+        "|---|---:|---:|---:|---:|",
+    ]
+    for r in architecture["results"]:
+        extra.append(
+            f"| {r['model']} | {r['parameters']:,} | {r['checkpoint_mb']:.2f} | {r['median_ms']:.2f} | {r['p95_ms']:.2f} |"
+        )
+    extra += ["", architecture["scope"], "", architecture["selection_note"], ""]
+    lines[index:index] = extra
     for r in benchmark["results"]:
         lines.append(
             f"| {r['backend']} | {r['median_ms']:.2f} | {r['p95_ms']:.2f} | {r['samples']} |"
@@ -77,6 +92,7 @@ def run():
     lines += [
         "",
         benchmark["scope"],
+        "Timing was measured in an interactive workstation session after training, without controlling power or thermal state. Architecture and runtime tables were measured separately; compare values within each table, not across sessions.",
         f"Apple M4 / 16 GB; {benchmark['threads']} CPU threads; {benchmark['imgsz']}×{benchmark['imgsz']}; 5 warmups; 30 validation images × 3 repeats; rotating backend order.",
         "",
         "PyTorch checkpoints and FP32 ONNX use different serialization/storage conventions. Compare INT8 with FP32 ONNX when calculating compression. There are no physical edge-device or power measurements.",
@@ -117,11 +133,36 @@ def run():
         "",
         "The separate interpretable audit uses color, brightness, contrast and sharpness. Neither analysis assigns verified semantic class names or automatically deletes images.",
         "",
+        "## Comparison with the initial experiment",
+        "",
+        "The expanded model improves validation AP over the initial run, but reference-test mAP50–95 is 0.2742 versus 0.2871 in v1. More data/training did not improve every score. Data volume, epochs and input size changed together, so this is not an isolated ablation or proof of a statistically significant difference.",
+        "",
         "## Scope of evidence",
         "",
         "Training, local API/UI checks, numerical parity, failure analysis and container verification are recorded in the repository. Remote GitHub Actions execution, full original archive verification, additional detector families, multiple training seeds, physical edge hardware, calibrated confidence and unique-object tracking are not claimed.",
         "",
     ]
+    audit_path = REPORTS / "final_audit_results.json"
+    if audit_path.exists():
+        audit = json.loads(audit_path.read_text())
+        fp_record = next(r for r in metrics if r["backend"] == "onnx_fp32")
+        if audit["model_sha256"] == fp_record["sha256"]:
+            lines += [
+                "## Additional fresh audit",
+                "",
+                f"After model/export selection, the FP32 deployment was evaluated on {audit['images']} images from {audit['videos']} previously unused videos: mAP50 **{audit['metrics']['metrics/mAP50(B)']:.4f}**, mAP50–95 **{audit['metrics']['metrics/mAP50-95(B)']:.4f}**.",
+                "",
+                audit["protocol"]["limitations"],
+                "The large gap from reference-test AP shows how strongly results depend on these small video samples. Do not present the higher audit score alone as general ocean performance.",
+                "",
+            ]
+        else:
+            lines += [
+                "## Historical fresh audit",
+                "",
+                "The saved fresh-audit report belongs to a different model fingerprint; do not treat it as the current model result.",
+                "",
+            ]
     (ROOT / "docs" / "RESULTS.md").write_text("\n".join(lines))
     models = {r["backend"]: r for r in metrics}
     times = {r["backend"]: r for r in benchmark["results"]}
@@ -135,7 +176,7 @@ def run():
         "*Python, PyTorch, Ultralytics, OpenCV, scikit-learn, ONNX Runtime, FastAPI, Streamlit, Docker*",
         "",
         f"- Built an end-to-end underwater debris detection pipeline; compared YOLO11n and YOLOv8n using video-disjoint data and achieved {fp['test']['metrics/mAP50(B)']:.3f} mAP50 on a 108-image reference holdout.",
-        f"- Exported the selected detector to ONNX, measuring {fp_time:.2f} ms median CPU forward latency versus {pt_time:.2f} ms for PyTorch on Apple M4; served image/video inference through FastAPI, Streamlit and a Docker container.",
+        f"- Exported the selected detector to ONNX, measuring {fp_time:.2f} ms median CPU forward latency versus {pt_time:.2f} ms for PyTorch on Apple M4; delivered a Dockerized FastAPI image API and a Streamlit image/video demo.",
         f"- Analyzed {embeddings['images']:,} training images with ResNet18 embeddings, PCA, KMeans and Isolation Forest; added video-grouped error analysis and diagnosed confidence collapse in an INT8 export.",
         "",
         "## How to use these bullets",

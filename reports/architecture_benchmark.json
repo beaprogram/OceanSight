@@ -1,0 +1,28 @@
+{
+  "scope": "Native PyTorch FP32 fused forward only; identical validation images, four CPU threads, batch one; rotating detector order.",
+  "imgsz": 416,
+  "warmup": 5,
+  "images": 30,
+  "repeats": 3,
+  "selection_note": "Accuracy-first model selection uses validation AP; these timings document the additional compute/size tradeoff.",
+  "results": [
+    {
+      "model": "yolo11n",
+      "validation_map50_95": 0.22549954020960877,
+      "parameters": 2590035,
+      "checkpoint_mb": 5.434458,
+      "median_ms": 27.179729491763283,
+      "p95_ms": 47.27252689699526,
+      "calls": 90
+    },
+    {
+      "model": "yolov8n",
+      "validation_map50_95": 0.23124995114126548,
+      "parameters": 3011043,
+      "checkpoint_mb": 6.212714,
+      "median_ms": 26.095521498064045,
+      "p95_ms": 46.2166651042935,
+      "calls": 90
+    }
+  ]
+}

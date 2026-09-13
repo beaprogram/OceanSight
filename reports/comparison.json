@@ -1,34 +1,38 @@
 [
   {
     "model": "yolo11n",
-    "epochs": 10,
-    "imgsz": 320,
+    "epochs": 30,
+    "imgsz": 416,
     "train_device": "mps",
-    "elapsed_train_and_val_s": 149.46268987499934,
+    "elapsed_train_and_val_s": 1762.0162808329915,
     "parameters": 2590035,
-    "size_mb": 5.423322,
+    "checkpoint": "models/yolo11n_v2.pt",
+    "run_directory": "runs/yolo11n_v2",
+    "size_mb": 5.434458,
     "validation": {
-      "metrics/precision(B)": 0.6468155964842067,
-      "metrics/recall(B)": 0.2872340425531915,
-      "metrics/mAP50(B)": 0.38346050379301067,
-      "metrics/mAP50-95(B)": 0.18549298757300442,
-      "fitness": 0.18549298757300442
+      "metrics/precision(B)": 0.5527982571131081,
+      "metrics/recall(B)": 0.44680851063829785,
+      "metrics/mAP50(B)": 0.44632588223786607,
+      "metrics/mAP50-95(B)": 0.22549954020960877,
+      "fitness": 0.22549954020960877
     }
   },
   {
     "model": "yolov8n",
-    "epochs": 10,
-    "imgsz": 320,
+    "epochs": 30,
+    "imgsz": 416,
     "train_device": "mps",
-    "elapsed_train_and_val_s": 103.8953334169928,
+    "elapsed_train_and_val_s": 2501.747548166997,
     "parameters": 3011043,
-    "size_mb": 6.201642,
+    "checkpoint": "models/yolov8n_v2.pt",
+    "run_directory": "runs/yolov8n_v2",
+    "size_mb": 6.212714,
     "validation": {
-      "metrics/precision(B)": 0.6699243849291533,
-      "metrics/recall(B)": 0.2765957446808511,
-      "metrics/mAP50(B)": 0.3573027115728543,
-      "metrics/mAP50-95(B)": 0.19812840282216104,
-      "fitness": 0.19812840282216104
+      "metrics/precision(B)": 0.6128690622448769,
+      "metrics/recall(B)": 0.43790157429936954,
+      "metrics/mAP50(B)": 0.49069067441246994,
+      "metrics/mAP50-95(B)": 0.23124995114126548,
+      "fitness": 0.23124995114126548
     }
   }
 ]

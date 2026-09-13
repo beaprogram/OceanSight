@@ -1,0 +1,118 @@
+{
+  "split": "validation",
+  "source": "archived v1 exports",
+  "results": {
+    "best.onnx": {
+      "output_operator": "Concat",
+      "images": [
+        {
+          "file_name": "vid_000297_frame0000001.jpg",
+          "max_confidence": 0.777838408946991,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000079_frame0000111.jpg",
+          "max_confidence": 0.863325834274292,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000099_frame0000007.jpg",
+          "max_confidence": 0.09840667247772217,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000070_frame0000011.jpg",
+          "max_confidence": 0.47060415148735046,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000425_frame0000014.jpg",
+          "max_confidence": 0.383067786693573,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000428_frame0000022.jpg",
+          "max_confidence": 0.4314355254173279,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000245_frame0000004.jpg",
+          "max_confidence": 0.06251543760299683,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000052_frame0000078.jpg",
+          "max_confidence": 0.42662447690963745,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000246_frame0000021.jpg",
+          "max_confidence": 0.02541026473045349,
+          "nonzero_scores": 2100
+        },
+        {
+          "file_name": "vid_000294_frame0000001.jpg",
+          "max_confidence": 0.7336724400520325,
+          "nonzero_scores": 2100
+        }
+      ]
+    },
+    "best_int8.onnx": {
+      "output_operator": "DequantizeLinear",
+      "images": [
+        {
+          "file_name": "vid_000297_frame0000001.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000079_frame0000111.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000099_frame0000007.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000070_frame0000011.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000425_frame0000014.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000428_frame0000022.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000245_frame0000004.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000052_frame0000078.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000246_frame0000021.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        },
+        {
+          "file_name": "vid_000294_frame0000001.jpg",
+          "max_confidence": 0.0,
+          "nonzero_scores": 0
+        }
+      ],
+      "output_quantization_scale": 2.035099983215332
+    }
+  },
+  "hypothesis": "A shared output quantization range across pixel coordinates and probabilities may round small confidence scores to zero. Inspect the measured output scale and confidence values; Conv-only quantization avoids quantizing this output concatenation."
+}
