@@ -1,0 +1,9 @@
+ultralytics==8.4.150
+torch==2.14.0
+torchvision==0.29.0
+opencv-python==5.0.0.93
+scikit-learn==1.9.1
+onnx==1.22.0
+onnxruntime==1.30.0
+streamlit==1.63.0
+pytest==9.1.1

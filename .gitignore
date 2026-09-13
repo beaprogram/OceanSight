@@ -1,0 +1,15 @@
+.venv/
+data/
+runs/
+models/
+.cache/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+logs/
+*.pt
+*.onnx
+*.onnx.data
+reports/*contact_sheet.jpg
+reports/samples/
