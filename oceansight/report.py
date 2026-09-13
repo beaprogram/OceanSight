@@ -29,6 +29,8 @@ def run():
                 'Checkpoint and ONNX file sizes use different serialization/precision conventions. Compare INT8 size with FP32 ONNX for the quantization compression ratio; the PyTorch checkpoint is not an FP32 tensor-storage baseline.','']
     else:lines+=['Not run.','']
     lines+=['## Quantization','',f"Status: {quant['status']}" if quant else 'Not run.','']
+    if metrics and any(r['backend']=='onnx_int8' and r['test']['metrics/mAP50(B)']==0 for r in metrics):
+        lines+=['**Conversion succeeded but detection quality failed: INT8 test AP is zero. This model is not suitable for the demo.** The unselective quantization recipe remains as an explicitly failed experiment. Investigate output-range distortion and selective operator quantization on training/validation data in a future experiment; no further parameters were tuned against this test set.','']
     if failures:
         t=failures['totals'];lines+=['## Demo-pipeline error analysis','',f"At confidence 0.25 and IoU 0.5: **{t['tp']} true positives, {t['fp']} false positives, {t['fn']} missed boxes**. Precision {t['precision']:.3f}; recall {t['recall']:.3f}.",'',
           'These fixed-threshold counts come from the custom ONNX demo preprocessing/NMS. They differ in definition from AP and from the validator’s best-F1 operating-point precision/recall. See the locally generated failure contact sheet for the highest-error examples.','']

@@ -43,7 +43,7 @@ def run():
     if quant_status['status']=='completed':candidates.append(('onnx_int8',q))
     rows=[]
     for label,path in candidates:
-        metrics=YOLO(path,task='detect').val(data=str(DATA/'dataset.yaml'),split='test',imgsz=size,batch=1,device='cpu',workers=0,
+        metrics=YOLO(path,task='detect').val(data=str(DATA/'dataset.yaml'),split='test',imgsz=size,batch=1,device='cpu',workers=0,rect=False,
                          project=str(ROOT/'runs'),name=f'test_{label}',plots=True,verbose=False)
         rows.append({'backend':label,'size_mb':path.stat().st_size/1e6,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
                     'test':{k:float(v) for k,v in metrics.results_dict.items()}})

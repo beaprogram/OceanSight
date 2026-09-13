@@ -8,6 +8,7 @@ import pandas as pd
 import streamlit as st
 from oceansight.common import MODELS, REPORTS, DATA
 from oceansight.inference import Detector, annotate
+from oceansight.video import process_video
 
 st.set_page_config(page_title='OceanSight Edge',page_icon='🌊',layout='wide')
 st.markdown('<style>.stApp{background:#071c27}h1,h2,h3{color:#b7f4e0}div[data-testid="stMetric"]{background:#123440;padding:18px;border-radius:12px}</style>',unsafe_allow_html=True)
@@ -39,20 +40,18 @@ with demo:
             st.info('Processes at most 150 frames. Counts are detections per frame, not unique tracked objects.')
             if st.button('Analyze video',type='primary'):
                 with tempfile.TemporaryDirectory() as temp:
-                    source=Path(temp)/'clip.mp4';source.write_bytes(upload.getvalue());cap=cv2.VideoCapture(str(source))
-                    preview=st.empty();progress=st.progress(0);rows=[]
-                    for i in range(150):
-                        ok,frame=cap.read()
-                        if not ok:break
-                        detections,ms=detector.predict(frame,confidence)
-                        rows.append({'frame':i,'detections':len(detections),'pipeline_ms':ms})
-                        if i%5==0:preview.image(annotate(frame,detections),channels='BGR')
+                    source=Path(temp)/'clip.mp4';source.write_bytes(upload.getvalue())
+                    output=Path(temp)/'annotated.mp4';preview=st.empty();progress=st.progress(0)
+                    def update(i,frame):
+                        if i%5==0:preview.image(frame,channels='BGR')
                         progress.progress((i+1)/150)
-                    cap.release();progress.empty()
-                    if rows:
+                    try:
+                        rows=process_video(source,output,detector,confidence,callback=update)
                         st.line_chart(pd.DataFrame(rows).set_index('frame')['detections'])
                         st.download_button('Download per-frame results',pd.DataFrame(rows).to_csv(index=False),'oceansight-video.csv','text/csv')
-                    else:st.error('The video could not be decoded.')
+                        st.download_button('Download annotated clip',output.read_bytes(),'oceansight-video.mp4','video/mp4')
+                    except (ValueError,RuntimeError) as exc:st.error(str(exc))
+                    finally:progress.empty()
         else:
             raw=upload.getvalue() if upload else ((DATA/'images'/'test'/sample).read_bytes() if sample and (DATA/'images'/'test'/sample).exists() else None)
             if raw:
@@ -71,12 +70,18 @@ with evidence:
     comparison=read_report('comparison.json')
     if comparison:
         st.caption('Model selection uses validation mAP50–95. These are equal-budget compact YOLO models, not an exhaustive architecture comparison.')
-        st.dataframe(pd.json_normalize(comparison),hide_index=True)
+        st.dataframe([{'Model':r['model'],'Epochs':r['epochs'],'Validation mAP50':round(r['validation']['metrics/mAP50(B)'],4),'Validation mAP50–95':round(r['validation']['metrics/mAP50-95(B)'],4)} for r in comparison],hide_index=True)
     else:st.info('Training comparison has not completed.')
     metrics=read_report('test_metrics.json');benchmark=read_report('benchmark.json')
-    if metrics:st.subheader('Held-out test evaluation');st.dataframe(pd.json_normalize(metrics),hide_index=True)
+    if metrics:
+        st.subheader('Held-out test evaluation')
+        st.dataframe([{'Runtime':r['backend'],'mAP50':round(r['test']['metrics/mAP50(B)'],4),'mAP50–95':round(r['test']['metrics/mAP50-95(B)'],4),'File MB':round(r['size_mb'],2)} for r in metrics],hide_index=True)
+        if any(r['backend']=='onnx_int8' and r['test']['metrics/mAP50(B)']==0 for r in metrics):
+            st.warning('The initial INT8 experiment produced zero test AP. It is retained as a failed optimization experiment; the demo uses FP32 ONNX.')
     if benchmark:
-        st.subheader('Warm CPU forward-pass latency');st.dataframe(benchmark['results'],hide_index=True);st.caption(benchmark['scope'])
+        st.subheader('Warm CPU forward-pass latency')
+        st.dataframe([{'Runtime':r['backend'],'Median ms':round(r['median_ms'],2),'P95 ms':round(r['p95_ms'],2),'Measurements':r['samples']} for r in benchmark['results']],hide_index=True)
+        st.caption(benchmark['scope'])
     if (REPORTS/'failure_contact_sheet.jpg').exists():st.image(str(REPORTS/'failure_contact_sheet.jpg'),caption='Failure review: green predictions, blue ground truth.')
 with quality:
     st.subheader('Which training images deserve another look?')

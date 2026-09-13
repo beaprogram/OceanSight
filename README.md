@@ -16,7 +16,7 @@ source .venv/bin/activate
 streamlit run app.py --server.address 127.0.0.1 --server.port 8501
 ```
 
-Open http://localhost:8501. Inspect held-out examples or upload an image/short video. The image path returns boxes, confidence, counts, latency, downloadable JSON and an annotated image. Video processing is capped at 150 frames and exports per-frame counts; those counts are **not unique tracked objects**. Uploaded files are processed locally, and temporary video files are removed afterward.
+Open http://localhost:8501. Inspect held-out examples or upload an image/short video. The image path returns boxes, confidence, counts, latency, downloadable JSON and an annotated image. Video processing is capped at 150 frames and exports an annotated MP4 and per-frame counts; those counts are **not unique tracked objects**. Uploaded files are processed locally, and temporary video files are removed afterward.
 
 ## Reproduce from source
 
@@ -25,14 +25,15 @@ Tested environment: Apple M4, 16 GB RAM, macOS, Python 3.13. The environment is 
 ```sh
 python3.13 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
-# requirements-lock.txt captures all installed versions on the original Mac.
+python -m pip install -r requirements-lock.txt
+# requirements.txt lists direct dependencies; the lock captures the tested Mac environment.
 python -m oceansight.data --limit 720 --seed 42 --frames-per-video 6
 python -m oceansight.audit
 python -m pytest -q
 python -m oceansight.train --epochs 10 --device mps --imgsz 320
 python -m oceansight.edge
 python -m oceansight.failures
+python -m oceansight.report
 streamlit run app.py --server.address 127.0.0.1
 ```
 

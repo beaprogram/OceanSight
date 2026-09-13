@@ -38,3 +38,18 @@ def test_real_manifest_disjointness():
         assert not sets['train']&sets['val']
         assert not sets['train']&sets['test']
         assert not sets['val']&sets['test']
+
+def test_video_is_bounded_and_playable(tmp_path):
+    import cv2
+    from oceansight.video import process_video
+    source=tmp_path/'input.mp4';output=tmp_path/'output.mp4'
+    writer=cv2.VideoWriter(str(source),cv2.VideoWriter_fourcc(*'mp4v'),10,(64,48))
+    assert writer.isOpened()
+    for _ in range(5):writer.write(np.zeros((48,64,3),np.uint8))
+    writer.release()
+    class Stub:
+        def predict(self,image,confidence):return [],1.0
+    rows=process_video(source,output,Stub(),max_frames=3)
+    assert len(rows)==3
+    cap=cv2.VideoCapture(str(output));assert int(cap.get(cv2.CAP_PROP_FRAME_COUNT))==3
+    assert cap.read()[0];cap.release()
