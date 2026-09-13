@@ -58,3 +58,9 @@ This verifies the same source-only path used by CI without mounting the dataset 
 Select repository `beaprogram/OceanSight`, branch `main`, entrypoint `cloud/app.py`, and Python 3.13. The entrypoint's `cloud/requirements.txt` takes priority over the training requirements at the repository root. It downloads and SHA-256 verifies the v1.0.0 ONNX artifacts and three reference examples from the pinned mirror. Example imagery is credited to JAMSTEC/TrashCan. No secrets or GPU are required.
 
 The public profile caps video processing at 60 frames and 20 MB; images are limited to 10 MB, 20 megapixels and 6000 pixels per side. Uploads are processed on the hosted server and are not intentionally persisted by the application. Results stay in session memory. Recorded CPU timings are from the original Apple M4 experiment, not cloud benchmarks.
+
+## Public deployment verified — 2026-09-13
+
+Live URL: https://oceansight-edge.streamlit.app/
+
+Deployed from commit `d6ff426126aa30a6bfeea1fd7a1b62d5a7410255`, branch `main`, entrypoint `cloud/app.py`. The actual host build used Python 3.14.7 and installed `cloud/requirements.txt`; the platform replaced PyArrow 25 with 24. Both FP32 and INT8 produced a detection on the first reference image. Measured-results and data-quality pages rendered successfully. A fresh anonymous HTTP session returned 200. These are deployment smoke checks, not a new accuracy or latency benchmark. Upload/video edge cases remain covered by local checks; they were not re-run on the public host.
