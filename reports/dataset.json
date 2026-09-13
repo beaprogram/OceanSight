@@ -1,0 +1,39 @@
+{
+  "source": "https://huggingface.co/datasets/anyaeross/trashcan1/resolve/52a49e9cb66002def6777e99d47e04301988f211",
+  "revision": "52a49e9cb66002def6777e99d47e04301988f211",
+  "seed": 42,
+  "split_policy": "video ID disjoint, 70/15/15 groups; capped evenly spaced frames per video",
+  "task": "binary detection: all trash_* labels mapped to marine_debris; animal/plant/ROV ignored",
+  "frames_per_video": 6,
+  "available_videos": 312,
+  "counts": {
+    "train": {
+      "images": 503,
+      "videos": 199,
+      "boxes": 415,
+      "negative_images": 143
+    },
+    "val": {
+      "images": 108,
+      "videos": 44,
+      "boxes": 94,
+      "negative_images": 30
+    },
+    "test": {
+      "images": 108,
+      "videos": 45,
+      "boxes": 94,
+      "negative_images": 24
+    }
+  },
+  "metadata_sha256": {
+    "train": "b11b0c55bb23db1358b2a05e2aea70d2aa6e5bfe82f27861c6706632aa8e380b",
+    "val": "525dbad90b38047a5b958f7072dcf3d826f567ebfaa15ea0b13901c18df4b4f4",
+    "test": "6fee36b04c1d179f91c161bf42e544a00beb57ffed074e8499253877cf7d3371"
+  },
+  "limitations": [
+    "Third-party mirror; annotation conversion not verified against original archive.",
+    "Video-disjoint does not guarantee expedition/location-disjoint.",
+    "Image list comes from annotations; unannotated background frames may be absent."
+  ]
+}

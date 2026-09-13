@@ -1,0 +1,44 @@
+{
+  "hardware": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "processor": "arm64",
+  "threads": 4,
+  "batch": 1,
+  "imgsz": 320,
+  "scope": "warm forward pass only; excludes image decode, letterbox and NMS; not a Jetson or Raspberry Pi benchmark",
+  "warmup": 5,
+  "unique_images": 30,
+  "repeat": 3,
+  "results": [
+    {
+      "backend": "pytorch_fp32",
+      "samples": 90,
+      "median_ms": 8.842937000736129,
+      "p95_ms": 11.114508444006784,
+      "mean_ms": 9.175363000475853
+    },
+    {
+      "backend": "onnx_fp32",
+      "samples": 90,
+      "median_ms": 4.159645504842047,
+      "p95_ms": 4.484933545609238,
+      "mean_ms": 4.177880067759866
+    },
+    {
+      "backend": "onnx_int8",
+      "samples": 90,
+      "median_ms": 3.9439380052499473,
+      "p95_ms": 4.665716857562074,
+      "mean_ms": 4.03608934575459
+    }
+  ],
+  "raw_output_parity_first_test_image": {
+    "onnx_fp32": {
+      "max_absolute_error": 0.000946044921875,
+      "mean_absolute_error": 4.591334072756581e-05
+    },
+    "onnx_int8": {
+      "max_absolute_error": 113.44879150390625,
+      "mean_absolute_error": 5.267484188079834
+    }
+  }
+}
