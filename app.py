@@ -1,6 +1,9 @@
 """Run: streamlit run app.py --server.address 127.0.0.1"""
 
 import json
+import os
+import io
+from PIL import Image
 import hashlib
 import tempfile
 from pathlib import Path
@@ -17,12 +20,34 @@ st.markdown(
     '<style>.stApp{background:#071c27}h1,h2,h3{color:#b7f4e0}div[data-testid="stMetric"]{background:#123440;padding:18px;border-radius:12px}</style>',
     unsafe_allow_html=True,
 )
+PUBLIC_DEMO = os.environ.get("OCEANSIGHT_PUBLIC_DEMO") == "1"
+MAX_FRAMES = 60 if PUBLIC_DEMO else 150
+if PUBLIC_DEMO:
+
+    @st.cache_resource
+    def prepare_public_demo():
+        from oceansight.public_demo import prepare
+
+        prepare()
+        return True
+
+    try:
+        with st.spinner("Loading verified model and review examples…"):
+            prepare_public_demo()
+    except Exception:
+        st.error("The demo could not download its verified artifacts. Please reload in a moment.")
+        st.stop()
+
 st.caption("OCEANSIGHT EDGE  /  APPLIED MARINE VISION")
 st.title("Find debris. Understand the evidence.")
 st.write(
-    "A local marine-debris detection prototype with video-disjoint evaluation and a transparent CPU deployment benchmark."
+    "Marine-debris detection with video-disjoint evaluation and transparent deployment measurements."
 )
-st.caption("Marine debris review • one detection class • local processing • human review required")
+st.caption("Marine debris review • one detection class • human review required")
+if PUBLIC_DEMO:
+    st.caption(
+        "Uploads are processed on this hosted server, not your device. The app does not intentionally persist uploads; results remain in session memory. Image limit: 10 MB. Video limit: 20 MB / 60 frames."
+    )
 status_path = REPORTS / "experiment_status.json"
 experiment_status = (
     json.loads(status_path.read_text()) if status_path.exists() else {"state": "complete"}
@@ -82,13 +107,17 @@ with demo:
             "Upload an underwater image or short video", type=["jpg", "jpeg", "png", "mp4", "mov"]
         )
         manifest = read_report("manifest.json") or []
-        names = [r["file_name"] for r in manifest if r["split"] == "test"]
+        names = [
+            r["file_name"]
+            for r in manifest
+            if r["split"] == "test" and (DATA / "images" / "test" / r["file_name"]).exists()
+        ]
         sample = st.selectbox("Or inspect a held-out sample", names) if names else None
-        if upload and upload.size > 50 * 1024 * 1024:
-            st.error("Use a file under 50 MB.")
+        if upload and upload.size > (20 if PUBLIC_DEMO else 50) * 1024 * 1024:
+            st.error(f"Use a file under {20 if PUBLIC_DEMO else 50} MB.")
         elif upload and upload.name.lower().endswith((".mp4", ".mov")):
             st.info(
-                "Processes at most 150 frames. Counts are detections per frame, not unique tracked objects."
+                f"Processes at most {MAX_FRAMES} frames. Counts are detections per frame, not unique tracked objects."
             )
             video_key = (
                 hashlib.sha256(upload.getvalue()).hexdigest()
@@ -110,10 +139,17 @@ with demo:
                     def update(i, frame):
                         if i % 5 == 0:
                             preview.image(frame, channels="BGR")
-                        progress.progress((i + 1) / 150)
+                        progress.progress((i + 1) / MAX_FRAMES)
 
                     try:
-                        rows = process_video(source, output, detector, confidence, callback=update)
+                        rows = process_video(
+                            source,
+                            output,
+                            detector,
+                            confidence,
+                            max_frames=MAX_FRAMES,
+                            callback=update,
+                        )
                         st.session_state["video_result"] = {
                             "rows": rows,
                             "video": output.read_bytes(),
@@ -145,7 +181,17 @@ with demo:
                 )
             )
             if raw:
-                im = cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR)
+                try:
+                    if len(raw) > 10 * 1024 * 1024:
+                        raise ValueError("Image exceeds 10 MB")
+                    with Image.open(io.BytesIO(raw)) as check:
+                        if max(check.size) > 6000 or check.width * check.height > 20_000_000:
+                            raise ValueError("Image exceeds 6000 pixels per side or 20 megapixels")
+                        check.verify()
+                    im = cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR)
+                except (OSError, ValueError, Image.DecompressionBombError) as exc:
+                    st.error(str(exc))
+                    im = None
                 if im is None:
                     st.error("The image could not be decoded.")
                 elif max(im.shape[:2]) > 6000:
@@ -159,7 +205,12 @@ with demo:
                     st.image(
                         annotate(im, detections),
                         channels="BGR",
-                        caption="Candidate detections need human review.",
+                        caption="Candidate detections need human review."
+                        + (
+                            " Reference imagery: JAMSTEC / TrashCan; shown for model evaluation."
+                            if not upload
+                            else ""
+                        ),
                     )
                     st.download_button(
                         "Download detections",
@@ -176,7 +227,7 @@ with demo:
                             "image/jpeg",
                         )
 with evidence:
-    st.subheader("Results generated on this Mac")
+    st.subheader("Recorded experiment results · Apple M4")
     comparison = read_report("comparison.json")
     if comparison:
         st.caption(

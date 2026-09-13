@@ -52,3 +52,9 @@ docker run --rm oceansight-edge:checks
 ```
 
 This verifies the same source-only path used by CI without mounting the dataset or model. Remote GitHub Actions has not run unless its own status is recorded separately.
+
+## Streamlit Community Cloud
+
+Select repository `beaprogram/OceanSight`, branch `main`, entrypoint `cloud/app.py`, and Python 3.13. The entrypoint's `cloud/requirements.txt` takes priority over the training requirements at the repository root. It downloads and SHA-256 verifies the v1.0.0 ONNX artifacts and three reference examples from the pinned mirror. Example imagery is credited to JAMSTEC/TrashCan. No secrets or GPU are required.
+
+The public profile caps video processing at 60 frames and 20 MB; images are limited to 10 MB, 20 megapixels and 6000 pixels per side. Uploads are processed on the hosted server and are not intentionally persisted by the application. Results stay in session memory. Recorded CPU timings are from the original Apple M4 experiment, not cloud benchmarks.
