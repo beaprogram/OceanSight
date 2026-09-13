@@ -6,6 +6,24 @@ OceanSight Edge turns underwater images or short clips into candidate debris det
 
 The project includes two trained detectors, video-disjoint data preparation, pretrained image-embedding analysis, a diagnosed and corrected quantization experiment, a Streamlit review app, a FastAPI prediction service, and a tested Linux inference container. Read [the measured results](docs/RESULTS.md) before quoting any performance claim.
 
+## Quick start for reviewers
+
+Requires Python 3.13. Clone this repository, install the demo dependencies, and download the evaluated ONNX models from [release v1.0.0](https://github.com/beaprogram/OceanSight/releases/tag/v1.0.0):
+
+```sh
+git clone https://github.com/beaprogram/OceanSight.git
+cd OceanSight
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-demo.txt
+mkdir -p models
+curl -fL https://github.com/beaprogram/OceanSight/releases/download/v1.0.0/best.onnx -o models/best.onnx
+curl -fL https://github.com/beaprogram/OceanSight/releases/download/v1.0.0/best_int8.onnx -o models/best_int8.onnx
+streamlit run app.py --server.address 127.0.0.1
+```
+
+Upload an underwater image or short video. Dataset images are not included; the reference-image picker becomes available after data preparation. No training or PyTorch installation is needed for this demo. The release also contains a portable source/model ZIP and SHA-256 checksums. Models are derived from Ultralytics checkpoints and supplied under AGPL-3.0; source dataset rights remain separate.
+
 ## Try it on the original Mac
 
 ```sh
