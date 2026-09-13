@@ -1,0 +1,9 @@
+FROM oceansight-edge:local
+USER root
+COPY requirements-dev.txt .
+RUN pip install --no-cache-dir -r requirements-dev.txt
+COPY tests/ ./tests/
+COPY app.py pyproject.toml ./
+RUN ruff check oceansight app.py tests
+USER oceansight
+CMD ["python", "-m", "pytest", "-q", "-p", "no:cacheprovider"]

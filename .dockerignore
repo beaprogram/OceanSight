@@ -1,0 +1,11 @@
+*
+!Dockerfile
+!requirements-inference-lock.txt
+!oceansight/
+!oceansight/*.py
+
+!requirements-dev.txt
+!tests/
+!tests/*.py
+!app.py
+!pyproject.toml

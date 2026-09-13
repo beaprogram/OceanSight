@@ -7,3 +7,6 @@ onnx==1.22.0
 onnxruntime==1.30.0
 streamlit==1.63.0
 pytest==9.1.1
+fastapi==0.141.1
+uvicorn==0.52.4
+ruff==0.16.7

@@ -1,116 +1,155 @@
 # OceanSight Edge
 
-**Marine-debris detection, honest evaluation, and a working local CPU demo.**
+**Marine-debris detection with model comparison, visual data review, and measured CPU deployment.**
 
-OceanSight Edge helps a reviewer find candidate debris in underwater imagery. It is an independent applied-ML portfolio project motivated by ocean-industry computer vision work, including DeepSense's domain. It is not affiliated with DeepSense and does not promise an interview or autonomous cleanup capability.
+OceanSight Edge turns underwater images or short clips into candidate debris detections that a person can review. It is an independent portfolio project focused on applied computer vision for ocean operations. It is not affiliated with DeepSense.
 
-The MVP compares two small pretrained detectors on a video-disjoint TrashCan subset, ranks unusual training images with unsupervised learning, exports the selected model to ONNX, tests static INT8 quantization, and exposes a local Streamlit review app. All reported numbers come from scripts. Missing results mean **not run**, not zero.
+The project includes two trained detectors, video-disjoint data preparation, pretrained image-embedding analysis, a diagnosed and corrected quantization experiment, a Streamlit review app, a FastAPI prediction service, and a tested Linux inference container. Read [the measured results](docs/RESULTS.md) before quoting any performance claim.
 
-## Open the demo
-
-On the original Mac:
+## Try it on the original Mac
 
 ```sh
 cd /Volumes/PortableSSD/Projects/OceanSight-Edge
-source .venv/bin/activate
-streamlit run app.py --server.address 127.0.0.1 --server.port 8501
+./start-demo.command
 ```
 
-Open http://localhost:8501. Inspect held-out examples or upload an image/short video. The image path returns boxes, confidence, counts, latency, downloadable JSON and an annotated image. Video processing is capped at 150 frames and exports an annotated MP4 and per-frame counts; those counts are **not unique tracked objects**. Uploaded files are processed locally, and temporary video files are removed afterward.
+Open [the review app](http://127.0.0.1:8501). Choose a reference-holdout image or upload a JPEG, PNG, MP4 or MOV. Image results include boxes, confidence, pipeline latency, annotated images and JSON. Video results include an annotated MP4 and per-frame count CSV; video counts are not unique tracked objects. The browser demo processes at most 150 frames and keeps uploaded video results in session memory so both downloads remain available.
 
-## Reproduce from source
+## Run the prediction API
 
-Tested environment: Apple M4, 16 GB RAM, macOS, Python 3.13. The environment is isolated in `.venv`; no global package changes are required. About 720 small images are downloaded. Budget several GB for Python packages and intermediate training artifacts.
+```sh
+source .venv/bin/activate
+uvicorn oceansight.api:app --host 127.0.0.1 --port 8000
+curl http://127.0.0.1:8000/ready
+curl -F 'file=@your-underwater-image.jpg' 'http://127.0.0.1:8000/predict?confidence=0.25'
+```
+
+Interactive API documentation is at `/docs`. `/health` reports process health; `/ready` loads and validates model availability. `/predict` returns bounding boxes, image dimensions, runtime and a model SHA-256 fingerprint. Invalid images and thresholds are rejected. Image input is bounded to 10 MB, 20 megapixels and 6000 pixels per side. The local service has no authentication and is intended to stay on localhost.
+
+## Run without the training framework
+
+The inference container uses ONNX Runtime, OpenCV and FastAPI; it does not install PyTorch or Ultralytics. The model is supplied separately so the source repository does not silently distribute pretrained weights.
+
+```sh
+docker build -t oceansight-edge:local .
+docker create --name oceansight-api -p 127.0.0.1:8000:8000 \
+  -e OCEANSIGHT_MODEL=/tmp/model.onnx oceansight-edge:local
+docker cp models/best.onnx oceansight-api:/tmp/model.onnx
+docker start oceansight-api
+curl http://127.0.0.1:8000/ready
+# Stop it when finished:
+docker stop oceansight-api
+```
+
+Copying the model also works when the external SSD is not shared with the Docker VM. An existing container name must be reused with `docker start` or replaced with a new name. The container runs as a non-root user. See [deployment and verification](docs/DEPLOYMENT.md).
+
+## Reproduce the experiment
+
+The tested training machine is an Apple M4 MacBook Air with 16 GB memory and Python 3.13. The environment is isolated in `.venv`. The pinned mirror requires no account or API key. Downloads and initial pretrained weights require network access.
 
 ```sh
 python3.13 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-lock.txt
-# requirements.txt lists direct dependencies; the lock captures the tested Mac environment.
-python -m oceansight.data --limit 720 --seed 42 --frames-per-video 6
+python -m oceansight.data --limit 2400 --frames-per-video 20 \
+  --preserve-holdouts reports/baseline_v1/manifest.json
 python -m oceansight.audit
-python -m pytest -q
-python -m oceansight.train --epochs 10 --device mps --imgsz 320
+python -m oceansight.embeddings
+python -m oceansight.train --epochs 30 --imgsz 416 --device mps --tag v2
 python -m oceansight.edge
 python -m oceansight.failures
+python -m oceansight.statistics
 python -m oceansight.report
-streamlit run app.py --server.address 127.0.0.1
+python -m oceansight.plots
+python -m pytest -q
+ruff check oceansight app.py tests
 ```
 
-Use `--device cpu` on computers without Apple GPU support. Internet access is needed for dataset files and initial pretrained weights. Run modules from the repository root. The local paths in `data/dataset.yaml` are generated for each checkout. Training reruns get a fresh run directory; exported `models/best.*` and summary reports represent the latest completed experiment. Keep previous reports if you want a long-lived experiment history.
+Use `--device cpu` where MPS is unavailable. The direct dependency list is in `requirements.txt`; the full Mac environment is pinned in `requirements-lock.txt`. `requirements-inference.txt` is the lean container environment. Training uses fresh suffixed run directories and then promotes the validation winner. Keep the reports before starting a new experiment; this repository preserves the initial short experiment under `reports/baseline_v1/`.
 
-## Data and experimental design
+Run batch inference without opening the app:
 
-- Source: [TrashCan, University of Minnesota](https://irvlab.cs.umn.edu/resources/trashcan), based on JAMSTEC J-EDI underwater footage.
-- Download: [public third-party mirror](https://huggingface.co/datasets/anyaeross/trashcan1), revision `52a49e9cb66002def6777e99d47e04301988f211`. The original archive server returned HTTP 403 during this build. The mirror's conversion has not been compared with the original archive.
-- Task: one `marine_debris` class, formed by merging every `trash_*` label. Animals, plants, and ROVs are background for this task. No material-classification claim is made.
-- Merge mirror annotation tables, group by `vid_*` filename prefix, assign source videos 70/15/15 to train/validation/test using seed 42, sample up to six temporally spread frames per video, and cap each split. This is a custom subset protocol, **not the official TrashCan benchmark**.
-- Exact image hashes and video IDs cannot overlap across splits. Bounding boxes are checked for finite values, clipped to image bounds, and converted to normalized YOLO coordinates. The committed manifest records source annotations, dimensions, hashes, source split, new split, and source video.
-- The image inventory comes from annotation rows; entirely unannotated background frames may be absent. Different videos may share locations or expeditions. Video grouping reduces temporal leakage but does not eliminate domain leakage.
+```sh
+python -m oceansight.cli your-image.jpg --output local-result
+python -m oceansight.cli your-clip.mp4 --max-frames 300 --output clip-result
+```
 
-## Architecture
+Choose a new output directory for each CLI run. It refuses to overwrite an existing directory.
+
+## Data protocol
+
+[TrashCan](https://irvlab.cs.umn.edu/resources/trashcan) originates from JAMSTEC J-EDI underwater footage. The original archive returned HTTP 403 during this build, so preparation uses [a public CSV/image mirror](https://huggingface.co/datasets/anyaeross/trashcan1), pinned at `52a49e9cb66002def6777e99d47e04301988f211`.
+
+All `trash_*` labels map to one `marine_debris` class. Animal, plant and ROV objects are background for this task. The project detects debris; it does not predict its material.
+
+The pipeline assigns whole source-video IDs to train/validation/test with seed 42 and samples temporally spread frames. The expanded run has **1,680 training images from 213 videos**, **108 validation images from 44 videos**, and **108 test images from 45 videos**. Validation and test image identities are preserved from the first experiment; neither is added to training. Exact duplicate hashes and video overlap are checked. Normalized boxes are generated from validated, clipped coordinates.
+
+The test set is a **reused reference holdout**: its first-version results and failure images were inspected before this expansion. Model selection and quantization gating use validation, but we do not describe this small reused set as a fresh, unbiased final benchmark. Different videos could share a location or expedition. The mirror conversion has not been checked against the original archive, and its annotation-derived inventory may omit fully unannotated negative frames. This is not the official TrashCan evaluation protocol.
+
+## System architecture
 
 ```mermaid
 flowchart LR
-    A[Pinned mirror + CSV annotations] --> B[Video-disjoint split and label checks]
-    B --> C[Train images]
-    B --> V[Validation images]
-    B --> T[Reserved test images]
-    C --> D[YOLO11n / YOLOv8n fine-tuning]
-    C --> Q[HSV + quality features]
-    Q --> U[KMeans + Isolation Forest + PCA plots]
-    D --> V
-    V --> S[Select validation mAP50-95 winner]
-    S --> E[FP32 ONNX / static INT8 QDQ]
-    C --> K[64 calibration images]
-    K --> E
-    E --> T
-    E --> F[CPU latency and output parity]
-    E --> G[Local Streamlit review app]
+  Source[Pinned images and annotation tables] --> Split[Video-disjoint split and box checks]
+  Split --> Train[Training set]
+  Split --> Val[Validation set]
+  Split --> Test[Reference test set]
+  Train --> Detectors[YOLO11n and YOLOv8n]
+  Detectors --> Val
+  Val --> Selected[Selected checkpoint]
+  Train --> Features[HSV quality features and ResNet18 embeddings]
+  Features --> Review[PCA, KMeans, Isolation Forest review queue]
+  Selected --> FP32[FP32 ONNX]
+  Train --> Calibration[128 distinct-video calibration images]
+  FP32 --> INT8[Conv-only INT8 with floating-point output]
+  Calibration --> INT8
+  INT8 --> Gate[Validation quality gate]
+  FP32 --> Test
+  Gate --> Test
+  FP32 --> App[Streamlit and FastAPI]
+  Gate --> App
+  Test --> Evidence[AP, failures and video-bootstrap intervals]
 ```
 
-## What to inspect
+## Engineering decisions worth discussing
 
-| Evidence | Location | What it means |
-|---|---|---|
-| Dataset protocol/counts | `reports/dataset.json` | Actual subset composition and limitations |
-| Exact input manifest | `reports/manifest.json` | Provenance and split reproducibility |
-| Two-model comparison | `reports/comparison.json` | Validation metrics under the same epoch/input-size budget |
-| Selected model | `reports/selection.json` | Validation-only selection rule |
-| Test evaluation | `reports/test_metrics.json` | Selected model in PyTorch, FP32 ONNX, and completed INT8 variant |
-| CPU benchmark | `reports/benchmark.json` | Four-thread, batch-one warm forward latency and raw-output parity |
-| Quantization status | `reports/quantization.json` | Explicit success/failure and train-only calibration |
-| Unsupervised review | `reports/quality.csv`, `reports/outlier_contact_sheet.jpg` | Appearance outliers, not automatic error labels |
-| Failure analysis | `reports/failure_cases.json`, `reports/failure_contact_sheet.jpg` | Fixed-threshold custom-demo detections matched to ground truth |
-| Raw runs | `runs/`, `logs/` | Local training curves, configurations and detailed logs |
+**Evaluation before claims.** Both compact detectors receive the same epoch budget, image size, data and seed. Validation mAP50–95 chooses the checkpoint/model. They are related YOLO architectures, so this is not a comparison against RT-DETR or Faster R-CNN. AP is not classification accuracy.
 
-The generated [results report](docs/RESULTS.md) summarizes the completed run. Data, weights, environments and raw runs are ignored by Git. Derived review images remain local and are ignored by Git pending a redistribution-license review; numerical reports and source are committed.
+**Unsupervised review, not automatic deletion.** One analysis uses interpretable image-quality features. Another extracts frozen 512-dimensional ResNet18 features and applies StandardScaler, PCA, KMeans and Isolation Forest. All fitting uses training data. Clusters have no asserted material labels; outliers remain in training. A video-diverse contact sheet helps prioritize manual review.
 
-## Evaluation, optimization and limits
+**Quantization debugging.** The initial broad INT8 graph quantized a combined coordinate/confidence output at a scale of about 2.04. All confidence values in ten checked validation images became zero. The corrected experiment quantizes convolution layers while keeping the final box/confidence computations floating point. INT8 must retain validation mAP50–95 within 0.02 absolute of FP32 to pass its quality gate. See the actual gate result rather than assuming success.
 
-We use **mAP50–95**, which evaluates box precision/recall across IoU thresholds from .50 through .95, and mAP50 as a more forgiving localization measure. They are not image classification accuracy. The selected checkpoint maximizes validation mAP50–95. YOLO11n and YOLOv8n are two related compact detectors; Faster R-CNN/RT-DETR comparisons are future work. One seed and ten epochs do not establish statistical superiority.
+**Fair timing.** CPU comparison uses the same square tensors, batch one and four threads, with warmups and rotating backend order. Forward-only latency excludes decode, resizing and NMS. The app/API separately report preprocessing + inference + postprocessing time. Container verification demonstrates portability, not a new speed benchmark. No physical Jetson/Pi or power measurements have been performed.
 
-The ONNX graph is exported at fixed 320×320, batch one. INT8 uses static calibration with only training images. Test metrics evaluate the exports; the default app remains FP32 ONNX to avoid choosing a variant using the held-out test set. No quantization speedup is assumed. Forward-only benchmarking excludes file decode, resizing and NMS; the app separately measures preprocessing + forward + postprocessing latency. CPU tests on an M4 are not measurements on a robot, Jetson, or Raspberry Pi.
+**Evidence includes failures and uncertainty.** Fixed-threshold predictions are matched one-to-one to labels. Failure contact sheets show the largest error counts. Whole-video bootstrap intervals quantify uncertainty in the fixed model's precision and recall; they do not replace multi-seed training or location-disjoint evaluation.
 
-The audit uses standardized HSV histograms and six interpretable quality descriptors. KMeans produces appearance clusters; Isolation Forest ranks unusual feature combinations; PCA shows a 2-D projection. It does **not** extract deep semantic embeddings or infer plastic/metal clusters. All fitting uses training data, and flagged images stay in the dataset for human review.
+![Training comparison](reports/training_comparison.png)
 
-Expected challenges include tiny debris, low contrast, partial occlusion, natural objects resembling trash, and incomplete labels. See measured failure examples rather than treating these hypotheses as proven causes. Confidence values are not calibrated probabilities. This is a human-review prototype, not navigation or robot-control software.
+![Deployment tradeoffs](reports/deployment_tradeoff.png)
 
-## Scale-up path
+## Evidence map
 
-1. Verify annotations against the original TrashCan archive and confirm redistribution permissions.
-2. Expand the subset with the same video-group protocol; keep a new locked expedition/location test set.
-3. Train longer across several seeds, then compare a second detector family with an explicit accuracy/latency budget.
-4. Add pretrained feature embeddings to complement interpretable quality features; manually review ranked candidates.
-5. Add material classes only after checking per-class support. Evaluate tracking separately if unique object counts matter.
-6. Use validation to choose quantization parameters, then run one final untouched test and profile a physical target device, including memory/power.
+| Artifact | Purpose |
+|---|---|
+| `reports/dataset.json`, `reports/manifest.json` | Provenance, source labels, hashes and split membership |
+| `reports/comparison.json`, `reports/selection.json` | Validation comparison and model selection |
+| `reports/test_metrics.json` | Matched-input PyTorch/ONNX/INT8 AP |
+| `reports/benchmark.json` | CPU methodology, latency and numerical parity |
+| `reports/quantization_diagnosis.json` | Measured original failure mechanism |
+| `reports/quantization_gate.json` | Validation acceptance of the revised INT8 experiment |
+| `reports/embeddings.json`, `reports/embedding_review.csv` | Deep-feature review protocol and ranking |
+| `reports/failure_cases.json`, `reports/uncertainty.json` | Error counts and video-bootstrap intervals |
+| `reports/training/`, `runs/`, `logs/` | Curves, configurations and execution evidence |
+| `docs/RESUME.md` | Resume wording generated from completed results |
 
-## Learn the project
+## Scope and limits
 
-Read [the walkthrough](docs/WALKTHROUGH.md) and [data/model notes](docs/DATA_AND_MODEL_CARD.md). Start with a held-out failure example: explain what the label says, what the model predicted, and which next experiment would test your explanation.
+This is a complete local portfolio implementation, not a deployed robot or a claim of broad ocean reliability. Small, partially hidden and low-contrast debris remain challenging. Confidence is not calibrated. There is no tracking, material classifier, depth estimate or navigation/control. Follow-up research should use original annotations, more locations, multiple seeds, a genuinely different detector family, and a new final holdout.
 
-## Attribution and licensing
+Read [the walkthrough](docs/WALKTHROUGH.md), [model/data card](docs/DATA_AND_MODEL_CARD.md), [results](docs/RESULTS.md), and [deployment guide](docs/DEPLOYMENT.md) before presenting. The source was developed with AI assistance; understanding and being able to modify it matters more than memorizing a polished description.
 
-TrashCan: Jungseok Hong, Michael Fulton, Junaed Sattar, [*TrashCan: A Semantically-Segmented Dataset towards Visual Detection of Marine Debris*](https://arxiv.org/abs/2007.08097). Image rights remain with the original owners; public accessibility is not a redistribution license. This repository does not relicense dataset images, annotations, or pretrained weights. Ultralytics has [AGPL-3.0 / enterprise licensing](https://www.ultralytics.com/license). Review those terms before distributing or deploying this application. Project source is provided under AGPL-3.0; see LICENSE. No remote publication or email sending is performed by this project.
+## Attribution
 
-Technical references: [Ultralytics training](https://docs.ultralytics.com/modes/train/), [ONNX export](https://docs.ultralytics.com/modes/export/), [ONNX Runtime quantization](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html).
+TrashCan: Jungseok Hong, Michael Fulton and Junaed Sattar, [*TrashCan: A Semantically-Segmented Dataset towards Visual Detection of Marine Debris*](https://arxiv.org/abs/2007.08097). Images originate from JAMSTEC. Dataset images and pretrained weights have separate rights and are not relicensed by this repository. Local image contact sheets are excluded from Git.
+
+Project source is AGPL-3.0; see LICENSE and [Ultralytics licensing](https://www.ultralytics.com/license). Verify original dataset/weight terms before public redistribution or commercial deployment. Technical references: [ONNX Runtime quantization](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html), [ResNet18 weights](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.resnet18.html), and [Ultralytics training](https://docs.ultralytics.com/modes/train/).

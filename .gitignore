@@ -13,3 +13,5 @@ logs/
 *.onnx.data
 reports/*contact_sheet.jpg
 reports/samples/
+
+reports/*.tmp

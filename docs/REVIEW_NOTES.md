@@ -1,6 +1,6 @@
-# Visual review of the completed run
+# Visual review notes — initial experiment and expanded data
 
-These are observations from the generated contact sheets, not causal diagnoses.
+The original detection examples below are archived v1 observations. Current error counts and contact sheets are regenerated for the selected v2 model; do not quote the old counts as v2 results.
 
 ## Unsupervised audit
 
@@ -22,3 +22,11 @@ The initial broad static INT8 QDQ conversion ran successfully but achieved zero 
 ## Verification correction
 
 An initial backend evaluation used the validator's default rectangular preprocessing for PyTorch and fixed square preprocessing for ONNX. Before reporting final results, the script was corrected to `rect=False` for every test backend and rerun. The committed final metrics use identical square inputs and show matching FP32 PyTorch/ONNX AP. This correction changes evaluation methodology, not model selection or hyperparameters.
+
+## Expanded embedding review
+
+The v2 top-12 video-diverse queue includes prominent ROV equipment, fish, crabs and other fauna. Those are often useful negative examples for binary debris detection. Their unusual embeddings are a reason to inspect them, not delete them. The queue is visibly more diverse than selecting many adjacent frames from one unusual video.
+
+## Confirmed numerical failure mechanism
+
+The v1 quantized output has a dequantization scale of 2.0351, and all confidence values were zero on ten validation images. Sharing a range with pixel coordinates made the output resolution too coarse for probabilities. The revised Conv-only recipe leaves that output floating-point; its validation gate and final evaluation determine whether the replacement is usable.

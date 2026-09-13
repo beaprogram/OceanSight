@@ -1,23 +1,25 @@
-# Data and model card
+# OceanSight Edge data and model card
 
-**Intended use:** local educational and portfolio demonstration of candidate marine-debris detection for human review.
+**Use:** local marine-debris candidate detection for human review. This is an independent portfolio implementation with a reproducible training/evaluation pipeline, not a robot-control system.
 
-**Not intended:** robotic control, navigation, autonomous object removal, exhaustive pollution measurement, or counts of unique tracked debris.
+**Lineage:** JAMSTEC J-EDI → TrashCan researchers → public third-party Hugging Face CSV/image mirror → project subset. The mirror revision is pinned, and source annotations/dimensions/hashes are retained. Original segmentation masks are not used. Mirror conversion has not been checked against the original blocked archive.
 
-**Data lineage:** JAMSTEC J-EDI → TrashCan researchers → third-party Hugging Face CSV/image mirror → this project's video-disjoint capped subset. Source revision and metadata/image hashes are in the committed reports. Original segmentation masks are not used. The third-party conversion remains unverified against the original archive.
+**Task:** all source `trash_*` labels become one binary `marine_debris` detection class. Other source objects are background. The model does not classify plastic, metal or other materials.
 
-**Labels:** every source `trash_*` category becomes binary `marine_debris`; all other source objects are ignored for detection labels. Source annotations are retained in the manifest. Boxes are clipped to image dimensions; degenerate/nonfinite boxes fail preparation.
+**Splits:** 1,680 training images across 213 videos, 108 validation images across 44 videos, and 108 reference-test images across 45 videos. There is no cross-split video ID or exact-hash overlap. Validation/test membership is frozen from v1; test results were previously inspected, so this is a reused reference holdout. Videos may share locations/expeditions. The annotation-derived inventory may omit completely unlabeled negative frames.
 
-**Selection:** two compact pretrained YOLO detectors fine-tuned with matching settings. Model selection uses validation mAP50–95. The held-out test set is used for final backend comparison and post-hoc failure inspection. There is no multi-seed confidence interval or official-benchmark claim.
+**Models:** pretrained YOLO11n and YOLOv8n, fine-tuned under matching 30-epoch, 416-pixel, batch-eight, seed-42 settings. Validation mAP50–95 selects the model/checkpoint. It is a single-seed comparison of related detectors, not evidence of universal architecture superiority.
 
-**Quality review:** standardized handcrafted color/quality features, KMeans, Isolation Forest, and PCA. These are exploratory training-only appearance analyses. Outliers are not automatically removed and no semantic cluster labels are inferred.
+**Review:** interpretable quality features and frozen 512-D ResNet18 embeddings. Scaling/PCA/KMeans/Isolation Forest are fitted only on training data. The review contact sheet takes at most one image per video. Outliers are not assumed to be annotation mistakes and are not automatically removed.
 
-**Deployment:** fixed square ONNX input, CPUExecutionProvider, batch one. The app uses explicit preprocessing/NMS. FP32 is the deployment default. Experimental INT8 status is recorded even if conversion fails. Calibration uses 64 training images; no validation/test calibration.
+**Optimization:** fixed-shape, batch-one ONNX export. The corrected INT8 recipe quantizes Conv operators after shape preprocessing and excludes DFL/output computations. Calibration uses 128 distinct training videos. A validation quality gate requires no more than 0.02 absolute mAP50–95 loss and nonzero AP. See the generated gate result; conversion success alone is insufficient. FP32 remains the default.
 
-**Potential bias/domain shift:** mostly deep underwater imagery and a small subset of source videos; unknown location overlap; limited shallow-water/harbor coverage; missing completely unannotated negative frames; unknown mirror conversion errors. No demographic/person-related model use is intended.
+**Evaluation:** matched square preprocessing for all final backends; AP50 and AP50–95; fixed-threshold custom-pipeline counts; video-cluster bootstrap intervals for precision/recall; rotating-order CPU forward benchmarks. No physical edge-device/power measurements, multi-seed uncertainty, calibrated probabilities or independent new test are claimed.
 
-**Known practical limits:** low resolution can obscure small debris; model confidence is uncalibrated; counts depend on threshold; no tracking, segmentation, material classes, depth or object size estimates. Actual failures are saved in reports rather than replaced by hypothetical examples.
+**Serving:** Streamlit image/video review; bounded FastAPI image inference; Docker inference container without the training framework. Counts in video are per-frame detections, not unique objects. The local API is not authenticated and is meant for localhost use.
 
-**Reproducibility:** fixed seed, pinned mirror, package version lock, source manifest, model hashes and training logs. Hardware/software variation and GPU operations may prevent bit-for-bit retraining equality.
+**Limits:** domain shift, small/occluded/low-contrast objects, annotation uncertainty and source correlation. No material classes, depth, navigation or autonomous removal. Review actual failure images before assigning a cause.
 
-**Licensing:** project source uses AGPL-3.0. Dataset/annotation/weight rights are separate. Verify original owner terms before redistribution or commercial use. No dataset images are included in Git.
+**Rights:** source AGPL-3.0; dataset images, annotations and pretrained weights have separate rights. Public accessibility is not permission to relicense or redistribute. Dataset imagery is not committed to Git.
+
+**Evidence:** `docs/RESULTS.md`, `reports/`, `runs/`, `logs/` and the Git history. Resume wording is generated from the measured reports in `docs/RESUME.md`.
